@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { forceSimulation, forceLink, forceManyBody, forceCollide, forceX, forceY } from "d3-force";
 import { zoom as d3zoom, zoomIdentity } from "d3-zoom";
 import { select, pointer } from "d3-selection";
 import { buildNetworkGraph } from "../data/network.js";
 import { useGraph } from "../hooks/useGraph.js";
-import { NODE_KIND, EDGE_KIND, RELATIONSHIP_ORDER, HOUSE } from "../data/taxonomy.js";
+import { NODE_KIND, EDGE_KIND, VIEW_PRESETS, RELATIONSHIP_ORDER, HOUSE } from "../data/taxonomy.js";
+import { AdminPanel } from "./AdminPage.jsx";
 
 const FOCUS_DIM_ALPHA = 0.15;
 const LABEL_FONT_SIZE = 11;
@@ -75,23 +75,95 @@ function traceNodeShape(ctx, node, cx, cy, r) {
   }
 }
 
+// Shared by the live node/link counter and the canvas draw loop (via
+// visibilityRef, see below) so "what's visible" is defined in exactly one
+// place. hideOrphans needs a first pass (baseVisible, kind/onlyNow only)
+// to know which nodes have any visible edge before it can decide which of
+// those nodes to actually keep -- same two-pass shape as the static
+// reference's refreshVisibility().
+function computeVisibility(graph, nodeById, { edgeKindsOn, nodeKindsOn, hideOrphans, onlyNow }) {
+  function baseVisible(node) {
+    if (!nodeKindsOn.has(node.k)) return false;
+    if (onlyNow && !node.now && node.k !== "award" && node.k !== "school") return false;
+    return true;
+  }
+  let linkedSet = null;
+  if (hideOrphans) {
+    linkedSet = new Set();
+    for (const l of graph.links) {
+      if (!edgeKindsOn.has(l.kind)) continue;
+      const s = nodeById.get(endpointId(l.source));
+      const t = nodeById.get(endpointId(l.target));
+      if (!s || !t || !baseVisible(s) || !baseVisible(t)) continue;
+      linkedSet.add(s.id);
+      linkedSet.add(t.id);
+    }
+  }
+  function nodeVisible(node) {
+    return baseVisible(node) && (!hideOrphans || linkedSet.has(node.id));
+  }
+  function linkVisible(l) {
+    if (!edgeKindsOn.has(l.kind)) return false;
+    const s = nodeById.get(endpointId(l.source));
+    const t = nodeById.get(endpointId(l.target));
+    return !!s && !!t && nodeVisible(s) && nodeVisible(t);
+  }
+  return { nodeVisible, linkVisible };
+}
+
+const ALWAYS_VISIBLE = { nodeVisible: () => true, linkVisible: () => true };
+
+// BFS outward from `id` through edges whose kind is currently enabled
+// (regardless of node-kind visibility -- matches the static reference's
+// setFocus, which only checks edgeOn). depth 1 is what plain selection
+// shows; the panel's "Focus Neighbourhood" action escalates to depth 2.
+function neighborhoodSet(id, depth, graph, nodeById, edgeKindsOn) {
+  const set = new Set([id]);
+  let frontier = [id];
+  for (let hop = 0; hop < depth; hop++) {
+    const next = [];
+    for (const l of graph.links) {
+      if (!edgeKindsOn.has(l.kind)) continue;
+      const s = endpointId(l.source), t = endpointId(l.target);
+      if (frontier.includes(s) && !set.has(t)) { set.add(t); next.push(t); }
+      else if (frontier.includes(t) && !set.has(s)) { set.add(s); next.push(s); }
+    }
+    frontier = next;
+  }
+  return set;
+}
+
 export default function NetworkPage() {
   const rawGraph = useGraph();
   const canvasRef = useRef(null);
   const tooltipRef = useRef(null);
   const transformRef = useRef(zoomIdentity);
   const zoomBehaviorRef = useRef(null);
+  const simRef = useRef(null);
   const dragNodeRef = useRef(null);
   const downRef = useRef(null);
+  const visibilityRef = useRef(ALWAYS_VISIBLE);
+  const colorizeRef = useRef(false);
 
   const [selectedId, setSelectedId] = useState(null);
-  const [kindFilter, setKindFilter] = useState(null);
+  const [focusDepth, setFocusDepth] = useState(1);
   const selectedRef = useRef(null);
   const focusSetRef = useRef(null);
   const drawRef = useRef(null);
 
   const [settleProgress, setSettleProgress] = useState(0);
   const [settled, setSettled] = useState(false);
+
+  // Relationship/view filtering -- what's actually hidden, not just
+  // dimmed. Defaults to "Everything".
+  const [edgeKindsOn, setEdgeKindsOn] = useState(() => new Set(Object.keys(EDGE_KIND)));
+  const [nodeKindsOn, setNodeKindsOn] = useState(() => new Set(Object.keys(NODE_KIND)));
+  const [hideOrphans, setHideOrphans] = useState(false);
+  const [onlyNow, setOnlyNow] = useState(false);
+  const [activePreset, setActivePreset] = useState("all");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [colorize, setColorize] = useState(false);
 
   const graph = useMemo(
     () => (rawGraph ? buildNetworkGraph(rawGraph) : null),
@@ -106,26 +178,34 @@ export default function NetworkPage() {
 
   const selectedNode = selectedId ? nodeById.get(selectedId) || null : null;
 
+  const visibility = useMemo(() => {
+    if (!graph) return ALWAYS_VISIBLE;
+    return computeVisibility(graph, nodeById, { edgeKindsOn, nodeKindsOn, hideOrphans, onlyNow });
+  }, [graph, nodeById, edgeKindsOn, nodeKindsOn, hideOrphans, onlyNow]);
+
+  const visibleCounts = useMemo(() => {
+    if (!graph) return { nodes: 0, links: 0 };
+    return {
+      nodes: graph.nodes.filter(visibility.nodeVisible).length,
+      links: graph.links.filter(visibility.linkVisible).length,
+    };
+  }, [graph, visibility]);
+
+  // The relationship groups shown in the detail panel only include kinds
+  // currently toggled on in the sidebar -- same reasoning as the static
+  // reference's dossier building.
   const focusLinks = useMemo(() => {
     if (!selectedId || !graph) return [];
     return graph.links.filter(
-      (l) => endpointId(l.source) === selectedId || endpointId(l.target) === selectedId
+      (l) => edgeKindsOn.has(l.kind) &&
+        (endpointId(l.source) === selectedId || endpointId(l.target) === selectedId)
     );
-  }, [graph, selectedId]);
+  }, [graph, selectedId, edgeKindsOn]);
 
   const focusSet = useMemo(() => {
-    if (!graph) return null;
-    if (kindFilter) {
-      return new Set(graph.nodes.filter((n) => n.k === kindFilter).map((n) => n.id));
-    }
-    if (!selectedId) return null;
-    const set = new Set([selectedId]);
-    for (const l of focusLinks) {
-      set.add(endpointId(l.source));
-      set.add(endpointId(l.target));
-    }
-    return set;
-  }, [selectedId, focusLinks, kindFilter, graph]);
+    if (!graph || !selectedId) return null;
+    return neighborhoodSet(selectedId, focusDepth, graph, nodeById, edgeKindsOn);
+  }, [selectedId, focusDepth, graph, nodeById, edgeKindsOn]);
 
   useEffect(() => {
     if (!graph) return;
@@ -151,7 +231,7 @@ export default function NetworkPage() {
       let best = null;
       let bestDist = Infinity;
       for (const node of graph.nodes) {
-        if (node.x == null) continue;
+        if (node.x == null || !visibilityRef.current.nodeVisible(node)) continue;
         const dx = node.x - worldX, dy = node.y - worldY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist <= nodeRadius(node) + tolerance && dist < bestDist) {
@@ -164,6 +244,7 @@ export default function NetworkPage() {
 
     function draw() {
       const tf = transformRef.current;
+      const vis = visibilityRef.current;
       ctx.save();
       ctx.clearRect(0, 0, W, H);
       ctx.translate(tf.x, tf.y);
@@ -174,13 +255,14 @@ export default function NetworkPage() {
       const labelWorldSize = taperedWorldSize(LABEL_FONT_SIZE, tf.k);
 
       for (const l of graph.links) {
+        if (!vis.linkVisible(l)) continue;
         const s = nodeById.get(endpointId(l.source));
         const t = nodeById.get(endpointId(l.target));
         if (!s || !t || s.x == null || t.x == null) continue;
         const dimmed = focus && !(focus.has(s.id) && focus.has(t.id));
         const spec = EDGE_KIND[l.kind];
         ctx.globalAlpha = dimmed ? FOCUS_DIM_ALPHA : l.kind === "honor" ? 0.28 : l.kind === "principal" ? 0.4 : 0.55;
-        ctx.strokeStyle = "#000";
+        ctx.strokeStyle = colorizeRef.current ? (spec?.color || "#000") : "#000";
         ctx.lineWidth = (spec?.weight || 1) / Math.max(0.6, tf.k);
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
@@ -189,14 +271,14 @@ export default function NetworkPage() {
       }
 
       for (const node of graph.nodes) {
-        if (node.x == null) continue;
+        if (node.x == null || !vis.nodeVisible(node)) continue;
         const r = taperedWorldSize(nodeRadius(node), tf.k);
         const dimmed = focus && !focus.has(node.id);
         ctx.globalAlpha = dimmed ? FOCUS_DIM_ALPHA : 1;
 
         traceNodeShape(ctx, node, node.x, node.y, r);
         ctx.lineWidth = (node.id === selectedRef.current ? 2.2 : 1.4) / tf.k;
-        ctx.strokeStyle = "#000";
+        ctx.strokeStyle = colorizeRef.current ? (NODE_KIND[node.k]?.color || "#000") : "#000";
         ctx.stroke();
 
         const textAlpha = dimmed ? Math.min(labelAlpha, FOCUS_DIM_ALPHA) : labelAlpha;
@@ -228,15 +310,21 @@ export default function NetworkPage() {
       .alphaDecay(0.022)
       .velocityDecay(0.36);
     sim.stop();
+    simRef.current = sim;
 
-    function fitView() {
-      if (graph.nodes.length === 0) return;
+    function boundsOfVisible() {
       let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
       for (const n of graph.nodes) {
-        if (n.x == null) continue;
+        if (n.x == null || !visibilityRef.current.nodeVisible(n)) continue;
         minX = Math.min(minX, n.x); maxX = Math.max(maxX, n.x);
         minY = Math.min(minY, n.y); maxY = Math.max(maxY, n.y);
       }
+      return { minX, minY, maxX, maxY };
+    }
+
+    function fitView() {
+      const { minX, minY, maxX, maxY } = boundsOfVisible();
+      if (minX === Infinity) return;
       const margin = 70;
       const boxW = Math.max(maxX - minX, 1) + margin * 2;
       const boxH = Math.max(maxY - minY, 1) + margin * 2;
@@ -251,7 +339,10 @@ export default function NetworkPage() {
       let n = 0;
       function chunk() {
         if (cancelled) return;
-        for (let i = 0; i < 30 && n < TOTAL_PREWARM_TICKS; i++, n++) sim.tick();
+        // 3 ticks/frame against 300 total = exactly 100 steps, so the
+        // percentage advances by 1 every frame instead of jumping in
+        // 10-point chunks.
+        for (let i = 0; i < 3 && n < TOTAL_PREWARM_TICKS; i++, n++) sim.tick();
         setSettleProgress(Math.round((100 * n) / TOTAL_PREWARM_TICKS));
         draw();
         if (n < TOTAL_PREWARM_TICKS) {
@@ -336,7 +427,7 @@ export default function NetworkPage() {
       const moved = Math.hypot(event.clientX - down.x, event.clientY - down.y);
       if (moved > DRAG_CLICK_THRESHOLD_PX) return;
       setSelectedId(down.node ? down.node.id : null);
-      setKindFilter(null);
+      setFocusDepth(1);
     }
 
     window.addEventListener("resize", resize);
@@ -350,14 +441,15 @@ export default function NetworkPage() {
     return () => {
       cancelled = true;
       sim.stop();
+      simRef.current = null;
       drawRef.current = null;
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
     };
-    // selectedId/focusSet intentionally excluded -- draw() reads them
-    // through selectedRef/focusSetRef (kept in sync below) so a selection
+    // selectedId/focusSet/visibility intentionally excluded -- draw() reads
+    // them through refs (kept in sync below) so a selection or filter
     // change redraws without tearing down and re-settling the simulation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [graph, nodeById]);
@@ -368,15 +460,31 @@ export default function NetworkPage() {
     drawRef.current?.();
   }, [selectedId, focusSet]);
 
-  function fitToScreen() {
-    const canvas = canvasRef.current;
-    if (!canvas || !zoomBehaviorRef.current || !graph) return;
+  useEffect(() => {
+    visibilityRef.current = visibility;
+    drawRef.current?.();
+  }, [visibility]);
+
+  useEffect(() => {
+    colorizeRef.current = colorize;
+    drawRef.current?.();
+  }, [colorize]);
+
+  function boundsOfVisibleNodes() {
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    if (!graph) return { minX, minY, maxX, maxY };
     for (const n of graph.nodes) {
-      if (n.x == null) continue;
+      if (n.x == null || !visibility.nodeVisible(n)) continue;
       minX = Math.min(minX, n.x); maxX = Math.max(maxX, n.x);
       minY = Math.min(minY, n.y); maxY = Math.max(maxY, n.y);
     }
+    return { minX, minY, maxX, maxY };
+  }
+
+  function fitToScreen() {
+    const canvas = canvasRef.current;
+    if (!canvas || !zoomBehaviorRef.current || !graph) return;
+    const { minX, minY, maxX, maxY } = boundsOfVisibleNodes();
     if (minX === Infinity) return;
     const margin = 70;
     const W = canvas.clientWidth, H = canvas.clientHeight;
@@ -388,9 +496,54 @@ export default function NetworkPage() {
     zoomBehaviorRef.current.transform(select(canvas), next);
   }
 
+  function centerOnNode(node, targetK) {
+    const canvas = canvasRef.current;
+    if (!canvas || !zoomBehaviorRef.current || node.x == null) return;
+    const k = targetK || Math.max(transformRef.current.k, 1.4);
+    const W = canvas.clientWidth, H = canvas.clientHeight;
+    const next = zoomIdentity.translate(W / 2 - k * node.x, H / 2 - k * node.y).scale(k);
+    zoomBehaviorRef.current.transform(select(canvas), next);
+  }
+
+  function resettle() {
+    simRef.current?.alpha(0.6).restart();
+  }
+
+  function clearFocus() {
+    setSelectedId(null);
+    setFocusDepth(1);
+  }
+
+  function applyPreset(id) {
+    const p = VIEW_PRESETS[id];
+    setEdgeKindsOn(new Set(p.edgeKinds));
+    setNodeKindsOn(new Set(p.nodeKinds));
+    setHideOrphans(p.hideOrphans);
+    setOnlyNow(p.onlyNow);
+    setActivePreset(id);
+  }
+
+  function toggleEdgeKind(kind) {
+    setEdgeKindsOn((cur) => {
+      const next = new Set(cur);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
+
+  function toggleNodeKind(kind) {
+    setNodeKindsOn((cur) => {
+      const next = new Set(cur);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const searchWrapRef = useRef(null);
+  const searchInputRef = useRef(null);
   const [infoOpen, setInfoOpen] = useState(false);
 
   const searchResults = useMemo(() => {
@@ -398,42 +551,33 @@ export default function NetworkPage() {
     if (!q || !graph) return [];
     return graph.nodes
       .filter((n) => n.n.toLowerCase().includes(q))
-      .sort((a, b) => b.degree - a.degree)
-      .slice(0, 8);
+      .sort((a, b) => b.degree - a.degree);
   }, [graph, searchQuery]);
 
-  function selectFromSearch(id) {
-    setSelectedId(id);
-    setKindFilter(null);
+  function selectFromSearch(node) {
+    setSelectedId(node.id);
+    setFocusDepth(1);
     setSearchOpen(false);
     setSearchQuery("");
+    centerOnNode(node, 1.8);
   }
 
-  function toggleFilterFromLegend(kind) {
-    setSelectedId(null);
-    setKindFilter((current) => (current === kind ? null : kind));
-  }
+  // Same full-screen overlay pattern as the archive app's SearchOverlay --
+  // open focuses the input and clears any prior query, Escape closes.
+  useEffect(() => {
+    if (searchOpen) {
+      setSearchQuery("");
+      searchInputRef.current?.focus();
+    }
+  }, [searchOpen]);
 
   useEffect(() => {
     if (!searchOpen) return;
-    function onDown(e) {
-      if (searchWrapRef.current && !searchWrapRef.current.contains(e.target)) {
-        setSearchOpen(false);
-        setSearchQuery("");
-      }
-    }
     function onKeyDown(e) {
-      if (e.key === "Escape") {
-        setSearchOpen(false);
-        setSearchQuery("");
-      }
+      if (e.key === "Escape") setSearchOpen(false);
     }
-    document.addEventListener("mousedown", onDown, true);
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onDown, true);
-      window.removeEventListener("keydown", onKeyDown);
-    };
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [searchOpen]);
 
   useEffect(() => {
@@ -462,85 +606,120 @@ export default function NetworkPage() {
       )}
 
       <div className="network-topleft">
-        <span className="network-wordmark">American Architecture — The Network</span>
+        <span className="network-wordmark">American Architecture Network</span>
+        <button type="button" className="link-btn" onClick={() => setFiltersOpen((open) => !open)}>
+          {filtersOpen ? "Filter-" : "Filter+"}
+        </button>
       </div>
 
       <div className="network-topright">
-        <div className="network-search" ref={searchWrapRef}>
-          {searchOpen ? (
-            <>
-              <input
-                type="text"
-                autoFocus
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search…"
-                className="network-search-input"
-                autoComplete="off"
-              />
-              {searchResults.length > 0 && (
-                <div className="creatable-menu network-search-menu">
-                  {searchResults.map((n) => (
-                    <button
-                      type="button"
-                      key={n.id}
-                      className="creatable-option"
-                      onMouseDown={(e) => { e.preventDefault(); selectFromSearch(n.id); }}
-                    >
-                      {n.n}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </>
-          ) : (
-            <button type="button" className="link-btn" onClick={() => setSearchOpen(true)}>Search</button>
-          )}
-        </div>
-        <Link className="link-btn" to="/admin">Admin</Link>
+        <button type="button" className="link-btn" onClick={() => setSearchOpen(true)}>Search</button>
+        <button type="button" className="link-btn" onClick={() => setAdminOpen(true)}>Admin</button>
         <button type="button" className="link-btn" onClick={() => setInfoOpen(true)}>Info</button>
       </div>
 
-      <button type="button" className="link-btn network-fit-btn" onClick={fitToScreen}>Fit to Screen</button>
-
-      <div className="network-legend">
-        {Object.entries(NODE_KIND).map(([kind, spec]) => (
-          <LegendItem
-            key={kind}
-            shape={spec.shape}
-            label={spec.label}
-            active={kindFilter === kind}
-            onClick={() => toggleFilterFromLegend(kind)}
-          />
-        ))}
+      <div className="network-counts">
+        {visibleCounts.nodes.toLocaleString()} nodes · {visibleCounts.links.toLocaleString()} links shown
       </div>
+
+      <div className="network-layout">
+        <button type="button" className="link-btn" onClick={resettle}>Resettle</button>
+        <button type="button" className="link-btn" onClick={fitToScreen}>Fit to Screen</button>
+        <button type="button" className="link-btn" onClick={clearFocus}>Clear Focus</button>
+        <span className="network-layout-sep">|</span>
+        <button
+          type="button"
+          className={colorize ? "link-btn active" : "link-btn"}
+          onClick={() => setColorize((c) => !c)}
+        >
+          {colorize ? "Monochromy" : "Polychromy"}
+        </button>
+      </div>
+
+      {filtersOpen && (
+        <FilterPanel
+          edgeKindsOn={edgeKindsOn}
+          nodeKindsOn={nodeKindsOn}
+          activePreset={activePreset}
+          colorize={colorize}
+          onToggleEdgeKind={toggleEdgeKind}
+          onToggleNodeKind={toggleNodeKind}
+          onApplyPreset={applyPreset}
+          onClose={() => setFiltersOpen(false)}
+        />
+      )}
+
+      {adminOpen && <AdminPanel onClose={() => setAdminOpen(false)} />}
 
       {selectedNode && (
         <NodeDetailPanel
           node={selectedNode}
           links={focusLinks}
           nodeById={nodeById}
-          onSelect={setSelectedId}
+          onSelect={(id) => { setSelectedId(id); setFocusDepth(1); }}
+          onFocusNeighborhood={() => setFocusDepth(2)}
+          onCenter={() => centerOnNode(selectedNode)}
           onClose={() => setSelectedId(null)}
         />
       )}
 
+      {searchOpen && (
+        <div className="overlay" onClick={(e) => { if (!e.target.closest("a, button, input, textarea, select")) setSearchOpen(false); }}>
+          <div className="overlay-bar">
+            <input
+              ref={searchInputRef}
+              type="search"
+              className="search-overlay-input"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoComplete="off"
+            />
+            <button type="button" className="overlay-close" onClick={() => setSearchOpen(false)}>
+              Close
+            </button>
+          </div>
+
+          {searchQuery.trim() !== "" && (
+            searchResults.length === 0 ? (
+              <div className="empty-state">
+                <p>No matches for "{searchQuery.trim()}".</p>
+              </div>
+            ) : (
+              <div className="search-results">
+                {searchResults.map((n) => (
+                  <button
+                    type="button"
+                    key={n.id}
+                    className="search-result-row"
+                    onClick={() => selectFromSearch(n)}
+                  >
+                    <span className="search-result-title">{n.n}</span>
+                    <span className="search-result-kind">{NODE_KIND[n.k]?.label}</span>
+                  </button>
+                ))}
+              </div>
+            )
+          )}
+        </div>
+      )}
+
       {infoOpen && (
-        <div className="overlay network-info-overlay" onClick={(e) => { if (!e.target.closest("a, button")) setInfoOpen(false); }}>
+        <div className="overlay" onClick={(e) => { if (!e.target.closest("a, button")) setInfoOpen(false); }}>
           <button type="button" className="overlay-close overlay-close-floating" onClick={() => setInfoOpen(false)}>
             Close
           </button>
           <div className="info-content">
             <p>
-              A map of American architectural lineage — who trained whom, who
-              employed whom, who partnered with whom, who taught where, and
-              who was recognised by which prizes and honours. Every person,
-              practice, school, and prize is a node; every documented
-              relationship between them is a line.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
             </p>
             <p>
-              Click a node to see its connections. Click a shape in the
-              legend to isolate that kind. Search finds a name directly.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
         </div>
@@ -549,21 +728,72 @@ export default function NetworkPage() {
   );
 }
 
-function LegendItem({ shape, label, onClick, active }) {
-  const icon = (
-    <svg width="12" height="12" viewBox="-8 -8 16 16" className="network-legend-icon" aria-hidden="true">
-      {shape === "square" && <rect x="-5" y="-5" width="10" height="10" fill="none" stroke="#000" strokeWidth="1.3" />}
-      {shape === "triangle" && <polygon points="0,-6 5.2,3 -5.2,3" fill="none" stroke="#000" strokeWidth="1.3" />}
-      {shape === "diamond" && <polygon points="0,-6 6,0 0,6 -6,0" fill="none" stroke="#000" strokeWidth="1.3" />}
-      {shape === "circle" && <circle cx="0" cy="0" r="4.4" fill="none" stroke="#000" strokeWidth="1.3" />}
-    </svg>
-  );
-
+function FilterPanel({ edgeKindsOn, nodeKindsOn, activePreset, colorize, onToggleEdgeKind, onToggleNodeKind, onApplyPreset, onClose }) {
   return (
-    <button type="button" className={active ? "network-legend-item active" : "network-legend-item"} onClick={onClick}>
-      {icon}
-      {label}
-    </button>
+    <aside className="network-panel network-panel-left">
+      <div className="network-panel-kindrow">
+        <span className="network-panel-kind">Filters</span>
+        <button type="button" className="network-panel-close" onClick={onClose} aria-label="Close">
+          ×
+        </button>
+      </div>
+
+      <div className="network-rel-group">
+        <p className="network-rel-head">Relationships</p>
+        <div className="network-filter-list">
+          {Object.entries(EDGE_KIND).map(([kind, spec]) => {
+            const on = edgeKindsOn.has(kind);
+            return (
+              <button
+                type="button"
+                key={kind}
+                className={on ? "network-filter-toggle" : "network-filter-toggle off"}
+                style={on && colorize ? { color: spec.color } : undefined}
+                onClick={() => onToggleEdgeKind(kind)}
+              >
+                {spec.labelOut}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="network-rel-group">
+        <p className="network-rel-head">Views</p>
+        <div className="network-filter-list">
+          {Object.entries(VIEW_PRESETS).map(([id, preset]) => (
+            <button
+              type="button"
+              key={id}
+              className={activePreset === id ? "network-filter-preset active" : "network-filter-preset"}
+              onClick={() => onApplyPreset(id)}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="network-rel-group">
+        <p className="network-rel-head">Node Type</p>
+        <div className="network-filter-list">
+          {Object.entries(NODE_KIND).map(([kind, spec]) => {
+            const on = nodeKindsOn.has(kind);
+            return (
+              <button
+                type="button"
+                key={kind}
+                className={on ? "network-filter-toggle" : "network-filter-toggle off"}
+                style={on && colorize && spec.color ? { color: spec.color } : undefined}
+                onClick={() => onToggleNodeKind(kind)}
+              >
+                {spec.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </aside>
   );
 }
 
@@ -579,9 +809,6 @@ function buildRelationshipGroups(node, links, nodeById) {
     if (!groups.has(label)) groups.set(label, []);
     groups.get(label).push(other);
   }
-  // Sort into RELATIONSHIP_ORDER, dropping empty groups; anything unknown
-  // (shouldn't happen, but a bad edge kind shouldn't silently vanish)
-  // falls through at the end.
   const ordered = [];
   for (const label of RELATIONSHIP_ORDER) {
     if (groups.has(label)) ordered.push([label, groups.get(label)]);
@@ -593,7 +820,7 @@ function buildRelationshipGroups(node, links, nodeById) {
   return ordered;
 }
 
-function NodeDetailPanel({ node, links, nodeById, onSelect, onClose }) {
+function NodeDetailPanel({ node, links, nodeById, onSelect, onFocusNeighborhood, onCenter, onClose }) {
   const groups = useMemo(() => buildRelationshipGroups(node, links, nodeById), [node, links, nodeById]);
   const houseLabels = (node.h || []).map((code) => HOUSE[code]).filter(Boolean);
 
@@ -627,6 +854,11 @@ function NodeDetailPanel({ node, links, nodeById, onSelect, onClose }) {
           </div>
         </div>
       ))}
+
+      <div className="network-panel-actions">
+        <button type="button" className="link-btn" onClick={onFocusNeighborhood}>Focus Neighbourhood</button>
+        <button type="button" className="link-btn" onClick={onCenter}>Centre</button>
+      </div>
     </aside>
   );
 }

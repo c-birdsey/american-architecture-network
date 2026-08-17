@@ -1,4 +1,4 @@
-# American Architecture — The Network
+# American Architecture Network
 
 A public, read-only force-directed graph of American architectural
 lineage — who trained whom, who employed whom, who partnered with whom,

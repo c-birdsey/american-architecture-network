@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, db, googleProvider } from "../firebase.js";
@@ -27,41 +27,60 @@ async function writeGraph(patch) {
   await updateDoc(doc(db, "graph", "data"), { ...patch, updatedAt: serverTimestamp() });
 }
 
-export default function AdminPage() {
+// Same overlay chrome as NetworkPage's Info panel (background, padding,
+// floating Close button) -- used both as a route (/admin, direct link/
+// bookmark) and as an in-page overlay from the network's "Admin" button.
+// The overlay path matters: swapping routes would unmount the network's
+// canvas and force the ~30s force-simulation prewarm to run again on the
+// way back, so the network button never navigates, it just shows this on
+// top of the still-mounted, already-settled canvas.
+export function AdminPanel({ onClose }) {
   const user = useAuth();
   const rawGraph = useGraph();
 
-  if (user === undefined || rawGraph === undefined) {
-    return <div className="admin-loading">Loading…</div>;
-  }
+  return (
+    <div className="overlay" onClick={(e) => { if (!e.target.closest("a, button, input, textarea, select")) onClose(); }}>
+      <button type="button" className="overlay-close overlay-close-floating" onClick={onClose}>
+        Close
+      </button>
 
-  if (!user) {
-    return (
-      <div className="admin-gate">
-        <p>Admin access requires signing in with an approved Google account.</p>
-        <button type="button" className="link-btn" onClick={() => signInWithPopup(auth, googleProvider)}>
-          Sign In with Google
-        </button>
-        <p><Link to="/">← Back to the network</Link></p>
-      </div>
-    );
-  }
+      {(user === undefined || rawGraph === undefined) && (
+        <p className="admin-status">Loading…</p>
+      )}
 
-  if (!ADMIN_EMAILS.includes(user.email)) {
-    return (
-      <div className="admin-gate">
-        <p>{user.email} isn't on the admin list for this app.</p>
-        <button type="button" className="link-btn" onClick={() => signOut(auth)}>Sign Out</button>
-        <p><Link to="/">← Back to the network</Link></p>
-      </div>
-    );
-  }
+      {user === null && (
+        <div className="admin-gate">
+          <p>Admin access requires signing in with an approved Google account.</p>
+          <button type="button" className="link-btn" onClick={() => signInWithPopup(auth, googleProvider)}>
+            Sign In with Google
+          </button>
+        </div>
+      )}
 
-  if (rawGraph === null) {
-    return <div className="admin-loading">The network's data hasn't been seeded yet — run the migration script first (see README).</div>;
-  }
+      {user && !ADMIN_EMAILS.includes(user.email) && (
+        <div className="admin-gate">
+          <p>{user.email} isn't on the admin list for this app.</p>
+          <button type="button" className="link-btn" onClick={() => signOut(auth)}>Sign Out</button>
+        </div>
+      )}
 
-  return <AdminDashboard graph={rawGraph} user={user} />;
+      {user && ADMIN_EMAILS.includes(user.email) && rawGraph === null && (
+        <p className="admin-status">The network's data hasn't been seeded yet — run the migration script first (see README).</p>
+      )}
+
+      {user && ADMIN_EMAILS.includes(user.email) && rawGraph && (
+        <AdminDashboard graph={rawGraph} user={user} />
+      )}
+    </div>
+  );
+}
+
+// Route wrapper for direct navigation to /admin (bookmarks, typed URLs) --
+// closing here has nowhere settled to return to, so it's a real navigation
+// back to "/", same as any other link.
+export default function AdminPage() {
+  const navigate = useNavigate();
+  return <AdminPanel onClose={() => navigate("/")} />;
 }
 
 function AdminDashboard({ graph, user }) {
@@ -158,13 +177,10 @@ function AdminDashboard({ graph, user }) {
   }
 
   return (
-    <div className="admin-page">
+    <div className="admin-content">
       <div className="admin-topbar">
         <span className="network-wordmark">Admin — {user.email}</span>
-        <div className="admin-topbar-right">
-          <Link className="link-btn" to="/">← Back to the Network</Link>
-          <button type="button" className="link-btn" onClick={() => signOut(auth)}>Sign Out</button>
-        </div>
+        <button type="button" className="link-btn" onClick={() => signOut(auth)}>Sign Out</button>
       </div>
 
       {message && <p className="admin-message">{message}</p>}
