@@ -1,0 +1,3673 @@
+{
+  "_provenance": "Merged from american-architecture-network (1).html mockup (2026-08-17): school nodes referenced by persons edu/alma data, plus the person->school \"trained\" edges. Excludes the AIA Pennsylvania state-award batch (award/practice nodes + kieran/timberlake/mcharg persons + their honor/office/partner/principal/faculty edges) bundled in the same mockup -- consistent with the prior decision to steer away from state award sweeps as too corporate/commercial for this dataset.",
+  "nodes": [
+    {
+      "id": "sch-ecole-des-beaux-arts-paris",
+      "n": "École des Beaux-Arts, Paris",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-harvard-university",
+      "n": "Harvard University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-ecole-centrale-des-arts-et-manufactures-paris",
+      "n": "École Centrale des Arts et Manufactures, Paris",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-new-york-university",
+      "n": "New York University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-amherst-college",
+      "n": "Amherst College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-united-states-military-academy-west-point",
+      "n": "United States Military Academy, West Point",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-american-academy-in-rome",
+      "n": "American Academy in Rome",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-wisconsin-madison",
+      "n": "University of Wisconsin–Madison",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-illinois-urbana-champaign",
+      "n": "University of Illinois Urbana-Champaign",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-helsinki-polytechnic-institute",
+      "n": "Helsinki Polytechnic Institute",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-beaux-arts-institute-of-design-new-york",
+      "n": "Beaux-Arts Institute of Design, New York",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-eth-zurich",
+      "n": "ETH Zurich",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-technische-hochschule-wien",
+      "n": "Technische Hochschule Wien",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-academy-of-fine-arts-vienna",
+      "n": "Academy of Fine Arts Vienna",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-czech-technical-university-prague",
+      "n": "Czech Technical University, Prague",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-technische-hochschule-berlin",
+      "n": "Technische Hochschule Berlin",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-bauhaus",
+      "n": "Bauhaus",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-michigan",
+      "n": "University of Michigan",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-escola-tecnica-superior-d-arquitectura-de-barcelona",
+      "n": "Escola Tècnica Superior d'Arquitectura de Barcelona",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-technische-hochschule-karlsruhe",
+      "n": "Technische Hochschule Karlsruhe",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-sapienza-university-of-rome",
+      "n": "Sapienza University of Rome",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-yale-university",
+      "n": "Yale University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-washington-university-in-st-louis",
+      "n": "Washington University in St. Louis",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-cranbrook-academy-of-art",
+      "n": "Cranbrook Academy of Art",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-auburn-university",
+      "n": "Auburn University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-washington",
+      "n": "University of Washington",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-dhaka",
+      "n": "University of Dhaka",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-texas-a-m-university",
+      "n": "Texas A&M University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-technische-universitat-munchen",
+      "n": "Technische Universität München",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-vassar-college",
+      "n": "Vassar College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-seoul-national-university",
+      "n": "Seoul National University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-college-dublin",
+      "n": "University College Dublin",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-nacional-de-tucuman",
+      "n": "Universidad Nacional de Tucumán",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-the-witwatersrand",
+      "n": "University of the Witwatersrand",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-architectural-association-london",
+      "n": "Architectural Association, London",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-radcliffe-college",
+      "n": "Radcliffe College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-northern-michigan-university",
+      "n": "Northern Michigan University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-politecnico-di-torino",
+      "n": "Politecnico di Torino",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-liverpool",
+      "n": "University of Liverpool",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-warburg-institute-london",
+      "n": "Warburg Institute, London",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-barnard-college",
+      "n": "Barnard College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-hampton-institute",
+      "n": "Hampton Institute",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-hawaii",
+      "n": "University of Hawaii",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-case-western-reserve-university",
+      "n": "Case Western Reserve University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-technische-hochschule-stuttgart",
+      "n": "Technische Hochschule Stuttgart",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-cambridge",
+      "n": "University of Cambridge",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-cincinnati",
+      "n": "University of Cincinnati",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-columbia-university",
+      "n": "Columbia University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-oregon",
+      "n": "University of Oregon",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-manchester",
+      "n": "University of Manchester",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-mcgill-university",
+      "n": "McGill University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-tokyo",
+      "n": "University of Tokyo",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-oberlin-college",
+      "n": "Oberlin College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-de-buenos-aires",
+      "n": "Universidad de Buenos Aires",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-chicago",
+      "n": "University of Chicago",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-essex",
+      "n": "University of Essex",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-american-university-of-beirut",
+      "n": "American University of Beirut",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-rhode-island-school-of-design",
+      "n": "Rhode Island School of Design",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-virginia",
+      "n": "University of Virginia",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-georgia-institute-of-technology",
+      "n": "Georgia Institute of Technology",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-rensselaer-polytechnic-institute",
+      "n": "Rensselaer Polytechnic Institute",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-stanford-university",
+      "n": "Stanford University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-syracuse-university",
+      "n": "Syracuse University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-notre-dame",
+      "n": "University of Notre Dame",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-missouri",
+      "n": "University of Missouri",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-escuela-tecnica-superior-de-arquitectura-de-madrid",
+      "n": "Escuela Técnica Superior de Arquitectura de Madrid",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-rotterdam-academy-of-architecture",
+      "n": "Rotterdam Academy of Architecture",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-nacional-de-rosario",
+      "n": "Universidad Nacional de Rosario",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-bologna",
+      "n": "University of Bologna",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-houston",
+      "n": "University of Houston",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-politecnica-de-madrid",
+      "n": "Universidad Politécnica de Madrid",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-tohoku-university",
+      "n": "Tohoku University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-miami-university",
+      "n": "Miami University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-osaka-university-of-arts",
+      "n": "Osaka University of Arts",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-brown-university",
+      "n": "Brown University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-carleton-college",
+      "n": "Carleton College",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-auckland",
+      "n": "University of Auckland",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-delft-university-of-technology",
+      "n": "Delft University of Technology",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-tulane-university",
+      "n": "Tulane University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-college-london",
+      "n": "University College London",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-rwth-aachen",
+      "n": "RWTH Aachen",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-north-carolina-a-t-state-university",
+      "n": "North Carolina A&T State University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-belgrade",
+      "n": "University of Belgrade",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-woodbury-university",
+      "n": "Woodbury University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-wisconsin-milwaukee",
+      "n": "University of Wisconsin–Milwaukee",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-calgary",
+      "n": "University of Calgary",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-iberoamericana",
+      "n": "Universidad Iberoamericana",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-toronto",
+      "n": "University of Toronto",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-detroit",
+      "n": "University of Detroit",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-arizona",
+      "n": "University of Arizona",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-melbourne",
+      "n": "University of Melbourne",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-brandeis-university",
+      "n": "Brandeis University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-waterloo",
+      "n": "University of Waterloo",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-universidad-nacional-de-la-plata",
+      "n": "Universidad Nacional de La Plata",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-university-of-edinburgh",
+      "n": "University of Edinburgh",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-hampton-university",
+      "n": "Hampton University",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sch-pratt-institute",
+      "n": "Pratt Institute",
+      "k": "school",
+      "l": "",
+      "t": "",
+      "h": [
+        "SCHOOL"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    }
+  ],
+  "edges": [
+    {
+      "source": "hunt",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "ware",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "vanbrunt",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "richardson",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "richardson",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "jenney",
+      "target": "sch-ecole-centrale-des-arts-et-manufactures-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "root",
+      "target": "sch-new-york-university",
+      "kind": "trained"
+    },
+    {
+      "source": "post",
+      "target": "sch-new-york-university",
+      "kind": "trained"
+    },
+    {
+      "source": "sullivan",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "sullivan",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "mckim",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "mckim",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "mead",
+      "target": "sch-amherst-college",
+      "kind": "trained"
+    },
+    {
+      "source": "coolidge",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "coolidge",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "holabird",
+      "target": "sch-united-states-military-academy-west-point",
+      "kind": "trained"
+    },
+    {
+      "source": "gilbert",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "carrere",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "hastings",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "pope",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "pope",
+      "target": "sch-american-academy-in-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "pope",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "maybeck",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "morgan",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "morgan",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "perkins_d",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "wright",
+      "target": "sch-university-of-wisconsin-madison",
+      "kind": "trained"
+    },
+    {
+      "source": "purcell",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "mahony",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "griffin_w",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "drummond",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "cret",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "saarinen_e",
+      "target": "sch-helsinki-polytechnic-institute",
+      "kind": "trained"
+    },
+    {
+      "source": "williams_pr",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "williams_pr",
+      "target": "sch-beaux-arts-institute-of-design-new-york",
+      "kind": "trained"
+    },
+    {
+      "source": "hood_r",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "hood_r",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "howe",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "howe",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "lescaze",
+      "target": "sch-eth-zurich",
+      "kind": "trained"
+    },
+    {
+      "source": "schindler",
+      "target": "sch-technische-hochschule-wien",
+      "kind": "trained"
+    },
+    {
+      "source": "schindler",
+      "target": "sch-academy-of-fine-arts-vienna",
+      "kind": "trained"
+    },
+    {
+      "source": "neutra",
+      "target": "sch-technische-hochschule-wien",
+      "kind": "trained"
+    },
+    {
+      "source": "raymond",
+      "target": "sch-czech-technical-university-prague",
+      "kind": "trained"
+    },
+    {
+      "source": "gropius",
+      "target": "sch-technische-hochschule-berlin",
+      "kind": "trained"
+    },
+    {
+      "source": "breuer",
+      "target": "sch-bauhaus",
+      "kind": "trained"
+    },
+    {
+      "source": "hudnut",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "hudnut",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "sert",
+      "target": "sch-escola-tecnica-superior-d-arquitectura-de-barcelona",
+      "kind": "trained"
+    },
+    {
+      "source": "hilberseimer",
+      "target": "sch-technische-hochschule-karlsruhe",
+      "kind": "trained"
+    },
+    {
+      "source": "fuller",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "wurster",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "belluschi",
+      "target": "sch-sapienza-university-of-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "belluschi",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "labatut",
+      "target": "sch-ecole-des-beaux-arts-paris",
+      "kind": "trained"
+    },
+    {
+      "source": "ain",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "soriano",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "scully",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "gruen",
+      "target": "sch-academy-of-fine-arts-vienna",
+      "kind": "trained"
+    },
+    {
+      "source": "kahn_l",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "johnson_p",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "johnson_p",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "saarinen_ee",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "eames_c",
+      "target": "sch-washington-university-in-st-louis",
+      "kind": "trained"
+    },
+    {
+      "source": "eames_r",
+      "target": "sch-cranbrook-academy-of-art",
+      "kind": "trained"
+    },
+    {
+      "source": "rudolph",
+      "target": "sch-auburn-university",
+      "kind": "trained"
+    },
+    {
+      "source": "rudolph",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "pei",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "pei",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "cobb_h",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "cobb_h",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "barnes_el",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "johansen",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "franzen",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "noyes",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "yamasaki",
+      "target": "sch-university-of-washington",
+      "kind": "trained"
+    },
+    {
+      "source": "yamasaki",
+      "target": "sch-new-york-university",
+      "kind": "trained"
+    },
+    {
+      "source": "skidmore",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "owings",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "owings",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "merrill",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "bunshaft",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "netsch",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "deblois",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "goldsmith",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "graham_b",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "khan_f",
+      "target": "sch-university-of-dhaka",
+      "kind": "trained"
+    },
+    {
+      "source": "khan_f",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "danforth",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "summers",
+      "target": "sch-texas-a-m-university",
+      "kind": "trained"
+    },
+    {
+      "source": "summers",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "brownson",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "fujikawa",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "lohan",
+      "target": "sch-technische-universitat-munchen",
+      "kind": "trained"
+    },
+    {
+      "source": "lambert",
+      "target": "sch-vassar-college",
+      "kind": "trained"
+    },
+    {
+      "source": "lambert",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "kimm",
+      "target": "sch-seoul-national-university",
+      "kind": "trained"
+    },
+    {
+      "source": "kimm",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "goldberg_b",
+      "target": "sch-bauhaus",
+      "kind": "trained"
+    },
+    {
+      "source": "goldberg_b",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "weese",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "weese",
+      "target": "sch-cranbrook-academy-of-art",
+      "kind": "trained"
+    },
+    {
+      "source": "roche_k",
+      "target": "sch-university-college-dublin",
+      "kind": "trained"
+    },
+    {
+      "source": "roche_k",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "dinkeloo",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "pelli",
+      "target": "sch-universidad-nacional-de-tucuman",
+      "kind": "trained"
+    },
+    {
+      "source": "pelli",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "venturi",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "venturi",
+      "target": "sch-american-academy-in-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "scottbrown",
+      "target": "sch-university-of-the-witwatersrand",
+      "kind": "trained"
+    },
+    {
+      "source": "scottbrown",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "scottbrown",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "giurgola",
+      "target": "sch-sapienza-university-of-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "giurgola",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "tyng",
+      "target": "sch-radcliffe-college",
+      "kind": "trained"
+    },
+    {
+      "source": "tyng",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "moore_c",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "moore_c",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "lyndon",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "turnbull",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "geddes",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "esherick",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "kappe",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "lautner",
+      "target": "sch-northern-michigan-university",
+      "kind": "trained"
+    },
+    {
+      "source": "jones_fay",
+      "target": "sch-university-of-arkansas-fay-jones-school",
+      "kind": "trained"
+    },
+    {
+      "source": "jones_fay",
+      "target": "sch-rice-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "soleri",
+      "target": "sch-politecnico-di-torino",
+      "kind": "trained"
+    },
+    {
+      "source": "koenig",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "rowe",
+      "target": "sch-university-of-liverpool",
+      "kind": "trained"
+    },
+    {
+      "source": "rowe",
+      "target": "sch-warburg-institute-london",
+      "kind": "trained"
+    },
+    {
+      "source": "hoesli",
+      "target": "sch-eth-zurich",
+      "kind": "trained"
+    },
+    {
+      "source": "slutzky",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "seligmann",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "sklarek",
+      "target": "sch-barnard-college",
+      "kind": "trained"
+    },
+    {
+      "source": "sklarek",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "bond",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "bond",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "chase_j",
+      "target": "sch-hampton-institute",
+      "kind": "trained"
+    },
+    {
+      "source": "chase_j",
+      "target": "sch-university-of-texas-at-austin",
+      "kind": "trained"
+    },
+    {
+      "source": "gantt",
+      "target": "sch-clemson-university",
+      "kind": "trained"
+    },
+    {
+      "source": "gantt",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "willis_b",
+      "target": "sch-university-of-hawaii",
+      "kind": "trained"
+    },
+    {
+      "source": "kerbis",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "polshek",
+      "target": "sch-case-western-reserve-university",
+      "kind": "trained"
+    },
+    {
+      "source": "polshek",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "frampton",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "birkerts",
+      "target": "sch-technische-hochschule-stuttgart",
+      "kind": "trained"
+    },
+    {
+      "source": "mockbee",
+      "target": "sch-auburn-university",
+      "kind": "trained"
+    },
+    {
+      "source": "eisenman",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "eisenman",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "eisenman",
+      "target": "sch-university-of-cambridge",
+      "kind": "trained"
+    },
+    {
+      "source": "graves",
+      "target": "sch-university-of-cincinnati",
+      "kind": "trained"
+    },
+    {
+      "source": "graves",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "graves",
+      "target": "sch-american-academy-in-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "gwathmey",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "gwathmey",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "hejduk",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "hejduk",
+      "target": "sch-university-of-cincinnati",
+      "kind": "trained"
+    },
+    {
+      "source": "hejduk",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "meier",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "stern",
+      "target": "sch-columbia-university",
+      "kind": "trained"
+    },
+    {
+      "source": "stern",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "tigerman",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "tigerman",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "beeby",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "beeby",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "koetter",
+      "target": "sch-university-of-oregon",
+      "kind": "trained"
+    },
+    {
+      "source": "koetter",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "foster",
+      "target": "sch-university-of-manchester",
+      "kind": "trained"
+    },
+    {
+      "source": "foster",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "rogers_r",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "rogers_r",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "safdie",
+      "target": "sch-mcgill-university",
+      "kind": "trained"
+    },
+    {
+      "source": "maki",
+      "target": "sch-university-of-tokyo",
+      "kind": "trained"
+    },
+    {
+      "source": "maki",
+      "target": "sch-cranbrook-academy-of-art",
+      "kind": "trained"
+    },
+    {
+      "source": "maki",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "childs",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "childs",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "gehry",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "gehry",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "mayne",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "mayne",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "moss",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "moss",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "rotondi",
+      "target": "sch-sci-arc",
+      "kind": "trained"
+    },
+    {
+      "source": "hodgetts",
+      "target": "sch-oberlin-college",
+      "kind": "trained"
+    },
+    {
+      "source": "hodgetts",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "fung",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "israel",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "israel",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "israel",
+      "target": "sch-american-academy-in-rome",
+      "kind": "trained"
+    },
+    {
+      "source": "predock",
+      "target": "sch-university-of-new-mexico",
+      "kind": "trained"
+    },
+    {
+      "source": "predock",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "tschumi",
+      "target": "sch-eth-zurich",
+      "kind": "trained"
+    },
+    {
+      "source": "koolhaas",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "koolhaas",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "vidler",
+      "target": "sch-university-of-cambridge",
+      "kind": "trained"
+    },
+    {
+      "source": "agrest",
+      "target": "sch-universidad-de-buenos-aires",
+      "kind": "trained"
+    },
+    {
+      "source": "gandelsonas",
+      "target": "sch-universidad-de-buenos-aires",
+      "kind": "trained"
+    },
+    {
+      "source": "woods_l",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "sorkin",
+      "target": "sch-university-of-chicago",
+      "kind": "trained"
+    },
+    {
+      "source": "sorkin",
+      "target": "sch-columbia-university",
+      "kind": "trained"
+    },
+    {
+      "source": "sorkin",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "holl",
+      "target": "sch-university-of-washington",
+      "kind": "trained"
+    },
+    {
+      "source": "holl",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "williams_t",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "tsien",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "tsien",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "scofidio",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "scofidio",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "diller",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "renfro",
+      "target": "sch-rice-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "renfro",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "libeskind",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "libeskind",
+      "target": "sch-university-of-essex",
+      "kind": "trained"
+    },
+    {
+      "source": "hadid",
+      "target": "sch-american-university-of-beirut",
+      "kind": "trained"
+    },
+    {
+      "source": "hadid",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "mori",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "berke",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "berke",
+      "target": "sch-city-college-of-new-york",
+      "kind": "trained"
+    },
+    {
+      "source": "weiss_m",
+      "target": "sch-university-of-virginia",
+      "kind": "trained"
+    },
+    {
+      "source": "weiss_m",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "manfredi",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "hawkinson",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "scogin",
+      "target": "sch-georgia-institute-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "elam",
+      "target": "sch-georgia-institute-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "bohlin",
+      "target": "sch-rensselaer-polytechnic-institute",
+      "kind": "trained"
+    },
+    {
+      "source": "bohlin",
+      "target": "sch-cranbrook-academy-of-art",
+      "kind": "trained"
+    },
+    {
+      "source": "lake",
+      "target": "sch-university-of-texas-at-austin",
+      "kind": "trained"
+    },
+    {
+      "source": "flato",
+      "target": "sch-stanford-university",
+      "kind": "trained"
+    },
+    {
+      "source": "rossbarney",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "blackwell",
+      "target": "sch-auburn-university",
+      "kind": "trained"
+    },
+    {
+      "source": "blackwell",
+      "target": "sch-syracuse-university",
+      "kind": "trained"
+    },
+    {
+      "source": "kundig",
+      "target": "sch-university-of-washington",
+      "kind": "trained"
+    },
+    {
+      "source": "jahn",
+      "target": "sch-technische-universitat-munchen",
+      "kind": "trained"
+    },
+    {
+      "source": "jahn",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "krueck",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "mccurry",
+      "target": "sch-vassar-college",
+      "kind": "trained"
+    },
+    {
+      "source": "vinci",
+      "target": "sch-iit-college-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "garofalo",
+      "target": "sch-university-of-notre-dame",
+      "kind": "trained"
+    },
+    {
+      "source": "garofalo",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "smith_a",
+      "target": "sch-university-of-illinois-chicago",
+      "kind": "trained"
+    },
+    {
+      "source": "smith_a",
+      "target": "sch-texas-a-m-university",
+      "kind": "trained"
+    },
+    {
+      "source": "baker_w",
+      "target": "sch-university-of-missouri",
+      "kind": "trained"
+    },
+    {
+      "source": "baker_w",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "whiting",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "whiting",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "whiting",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "sarkis",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "sarkis",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "jaque",
+      "target": "sch-escuela-tecnica-superior-de-arquitectura-de-madrid",
+      "kind": "trained"
+    },
+    {
+      "source": "tehrani",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "tehrani",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "tehrani",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "pdl",
+      "target": "sch-university-of-miami",
+      "kind": "trained"
+    },
+    {
+      "source": "pdl",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "yoon",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "yoon",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "howeler",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "howeler",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "aranda",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "lasch",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "dubbeldam",
+      "target": "sch-rotterdam-academy-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "dubbeldam",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "hda",
+      "target": "sch-universidad-nacional-de-rosario",
+      "kind": "trained"
+    },
+    {
+      "source": "hda",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "manferdini",
+      "target": "sch-university-of-bologna",
+      "kind": "trained"
+    },
+    {
+      "source": "manferdini",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "spina",
+      "target": "sch-universidad-nacional-de-rosario",
+      "kind": "trained"
+    },
+    {
+      "source": "spina",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "huljich",
+      "target": "sch-universidad-nacional-de-rosario",
+      "kind": "trained"
+    },
+    {
+      "source": "huljich",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "denari",
+      "target": "sch-university-of-houston",
+      "kind": "trained"
+    },
+    {
+      "source": "denari",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "ibanez",
+      "target": "sch-universidad-politecnica-de-madrid",
+      "kind": "trained"
+    },
+    {
+      "source": "ibanez",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "abe_h",
+      "target": "sch-tohoku-university",
+      "kind": "trained"
+    },
+    {
+      "source": "abe_h",
+      "target": "sch-sci-arc",
+      "kind": "trained"
+    },
+    {
+      "source": "lynn",
+      "target": "sch-miami-university",
+      "kind": "trained"
+    },
+    {
+      "source": "lynn",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "reiser",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "reiser",
+      "target": "sch-cranbrook-academy-of-art",
+      "kind": "trained"
+    },
+    {
+      "source": "umemoto",
+      "target": "sch-osaka-university-of-arts",
+      "kind": "trained"
+    },
+    {
+      "source": "umemoto",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "allen_s",
+      "target": "sch-brown-university",
+      "kind": "trained"
+    },
+    {
+      "source": "allen_s",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "allen_s",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "meredith",
+      "target": "sch-syracuse-university",
+      "kind": "trained"
+    },
+    {
+      "source": "meredith",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "sample_h",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "sample_h",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "mcewen",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "lewis_p",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "tsurumaki",
+      "target": "sch-university-of-virginia",
+      "kind": "trained"
+    },
+    {
+      "source": "tsurumaki",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "lewis_d",
+      "target": "sch-carleton-college",
+      "kind": "trained"
+    },
+    {
+      "source": "lewis_d",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "orff",
+      "target": "sch-university-of-virginia",
+      "kind": "trained"
+    },
+    {
+      "source": "orff",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "wilson_m",
+      "target": "sch-university-of-virginia",
+      "kind": "trained"
+    },
+    {
+      "source": "wilson_m",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "wilson_m",
+      "target": "sch-new-york-university",
+      "kind": "trained"
+    },
+    {
+      "source": "gooden",
+      "target": "sch-clemson-university",
+      "kind": "trained"
+    },
+    {
+      "source": "gooden",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "admassu",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "andraos",
+      "target": "sch-mcgill-university",
+      "kind": "trained"
+    },
+    {
+      "source": "andraos",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "wigley",
+      "target": "sch-university-of-auckland",
+      "kind": "trained"
+    },
+    {
+      "source": "idenburg",
+      "target": "sch-delft-university-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "liu_j",
+      "target": "sch-tulane-university",
+      "kind": "trained"
+    },
+    {
+      "source": "prince_ramus",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "prince_ramus",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "gang",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "gang",
+      "target": "sch-eth-zurich",
+      "kind": "trained"
+    },
+    {
+      "source": "gang",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "lee_mark",
+      "target": "sch-university-of-southern-california",
+      "kind": "trained"
+    },
+    {
+      "source": "lee_mark",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "johnston_s",
+      "target": "sch-stanford-university",
+      "kind": "trained"
+    },
+    {
+      "source": "johnston_s",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "cohen_ps",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "cohen_ps",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "moussavi",
+      "target": "sch-university-college-london",
+      "kind": "trained"
+    },
+    {
+      "source": "moussavi",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "la_grace",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "hays",
+      "target": "sch-georgia-institute-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "hays",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "whittaker_e",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "panzano",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "otero",
+      "target": "sch-delft-university-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "otero",
+      "target": "sch-escuela-tecnica-superior-de-arquitectura-de-madrid",
+      "kind": "trained"
+    },
+    {
+      "source": "miljacki",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "kennedy_s",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "ghosn",
+      "target": "sch-american-university-of-beirut",
+      "kind": "trained"
+    },
+    {
+      "source": "ghosn",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "ghosn",
+      "target": "sch-michigan-taubman-college",
+      "kind": "trained"
+    },
+    {
+      "source": "jazairy",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "jazairy",
+      "target": "sch-michigan-taubman-college",
+      "kind": "trained"
+    },
+    {
+      "source": "tibbits",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "oxman",
+      "target": "sch-architectural-association-london",
+      "kind": "trained"
+    },
+    {
+      "source": "oxman",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "ochsendorf",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "ochsendorf",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "ochsendorf",
+      "target": "sch-university-of-cambridge",
+      "kind": "trained"
+    },
+    {
+      "source": "massey_j",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "abrons",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "steiner_f",
+      "target": "sch-university-of-cincinnati",
+      "kind": "trained"
+    },
+    {
+      "source": "steiner_f",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "kolatan_f",
+      "target": "sch-rwth-aachen",
+      "kind": "trained"
+    },
+    {
+      "source": "kolatan_f",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "jamelle",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "chow_r",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "rael",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "sanfratello",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "turan",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "hood_w",
+      "target": "sch-north-carolina-a-t-state-university",
+      "kind": "trained"
+    },
+    {
+      "source": "hood_w",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "sabin",
+      "target": "sch-university-of-washington",
+      "kind": "trained"
+    },
+    {
+      "source": "sabin",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "odonnell_c",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "newsom",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "newsom",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "gage",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "easterling",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "bald",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "marjanovic",
+      "target": "sch-university-of-belgrade",
+      "kind": "trained"
+    },
+    {
+      "source": "marjanovic",
+      "target": "sch-university-of-illinois-chicago",
+      "kind": "trained"
+    },
+    {
+      "source": "ronan",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "ronan",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "barnes_g",
+      "target": "sch-university-of-illinois-urbana-champaign",
+      "kind": "trained"
+    },
+    {
+      "source": "barnes_g",
+      "target": "sch-woodbury-university",
+      "kind": "trained"
+    },
+    {
+      "source": "cooke_s",
+      "target": "sch-syracuse-university",
+      "kind": "trained"
+    },
+    {
+      "source": "cooke_s",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "cornelius",
+      "target": "sch-university-of-wisconsin-milwaukee",
+      "kind": "trained"
+    },
+    {
+      "source": "cornelius",
+      "target": "sch-university-of-virginia",
+      "kind": "trained"
+    },
+    {
+      "source": "dallacosta",
+      "target": "sch-university-of-calgary",
+      "kind": "trained"
+    },
+    {
+      "source": "murphy_m",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "ricks",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "williams_am",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "escobedo",
+      "target": "sch-universidad-iberoamericana",
+      "kind": "trained"
+    },
+    {
+      "source": "escobedo",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "bilbao",
+      "target": "sch-universidad-iberoamericana",
+      "kind": "trained"
+    },
+    {
+      "source": "ban",
+      "target": "sch-sci-arc",
+      "kind": "trained"
+    },
+    {
+      "source": "ban",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "maltzan",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "maltzan",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "lai_j",
+      "target": "sch-university-of-toronto",
+      "kind": "trained"
+    },
+    {
+      "source": "preissner",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "dunn_s",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "felsen",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-brad-cloepfil",
+      "target": "sch-university-of-oregon",
+      "kind": "trained"
+    },
+    {
+      "source": "p-brad-cloepfil",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-rick-joy",
+      "target": "sch-university-of-arizona",
+      "kind": "trained"
+    },
+    {
+      "source": "p-teddy-cruz",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-julie-eizenberg",
+      "target": "sch-university-of-melbourne",
+      "kind": "trained"
+    },
+    {
+      "source": "p-julie-eizenberg",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-hank-koning",
+      "target": "sch-university-of-melbourne",
+      "kind": "trained"
+    },
+    {
+      "source": "p-hank-koning",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-mark-simon",
+      "target": "sch-brandeis-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-mark-simon",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-lars-lerup",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-lars-lerup",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-james-corner",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "p-enrique-norten",
+      "target": "sch-universidad-iberoamericana",
+      "kind": "trained"
+    },
+    {
+      "source": "p-enrique-norten",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "p-carlos-jimenez",
+      "target": "sch-university-of-houston",
+      "kind": "trained"
+    },
+    {
+      "source": "p-brigitte-shim",
+      "target": "sch-university-of-waterloo",
+      "kind": "trained"
+    },
+    {
+      "source": "p-david-benjamin",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-david-benjamin",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-chris-reed",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-lisa-iwamoto",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-craig-scott",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-eric-bunge",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-mimi-hoang",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-gregg-pasquarelli",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-christopher-sharples",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-coren-sharples",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-william-sharples",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-kimberly-holden",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-neeraj-bhatia",
+      "target": "sch-university-of-waterloo",
+      "kind": "trained"
+    },
+    {
+      "source": "p-neeraj-bhatia",
+      "target": "sch-rice-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-marc-angelil",
+      "target": "sch-eth-zurich",
+      "kind": "trained"
+    },
+    {
+      "source": "p-turner-brooks",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-turner-brooks",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-peter-de-bretteville",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-peggy-deamer",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "p-peggy-deamer",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-joel-sanders",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-sulan-kolatan",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-stanley-saitowitz",
+      "target": "sch-university-of-the-witwatersrand",
+      "kind": "trained"
+    },
+    {
+      "source": "p-stanley-saitowitz",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-michael-bell",
+      "target": "sch-rhode-island-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-michael-bell",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-andres-duany",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-andres-duany",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-elizabeth-plater-zyberk",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-elizabeth-plater-zyberk",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-susana-torre",
+      "target": "sch-universidad-nacional-de-la-plata",
+      "kind": "trained"
+    },
+    {
+      "source": "p-susana-torre",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-laurinda-spear",
+      "target": "sch-brown-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-laurinda-spear",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-stuart-cohen",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "p-frederick-fisher",
+      "target": "sch-oberlin-college",
+      "kind": "trained"
+    },
+    {
+      "source": "p-frederick-fisher",
+      "target": "sch-ucla-architecture-and-urban-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-ralph-lerner",
+      "target": "sch-cooper-union-irwin-s-chanin-school",
+      "kind": "trained"
+    },
+    {
+      "source": "p-ralph-lerner",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-frederic-schwartz",
+      "target": "sch-uc-berkeley-college-of-environmental-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-frederic-schwartz",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-thomas-hanrahan",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-victoria-meyers",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-wes-jones",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-wes-jones",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-mark-mack",
+      "target": "sch-academy-of-fine-arts-vienna",
+      "kind": "trained"
+    },
+    {
+      "source": "p-william-l-rawn",
+      "target": "sch-harvard-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-william-l-rawn",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "p-w-g-clark",
+      "target": "sch-clemson-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-hagy-belzberg",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-brian-phillips",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "p-jonathan-tate",
+      "target": "sch-auburn-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-jonathan-tate",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-ersela-kripa",
+      "target": "sch-rice-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-stephen-mueller",
+      "target": "sch-rice-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-jenny-wu",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-dwayne-oyler",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-nahyun-hwang",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-david-eugin-moon",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-troy-schaum",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-rosalyne-shieh",
+      "target": "sch-princeton-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-brennan-buck",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-trattie-davies",
+      "target": "sch-yale-school-of-architecture",
+      "kind": "trained"
+    },
+    {
+      "source": "p-sara-zewde",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    },
+    {
+      "source": "p-felecia-davis",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "p-azra-aksamija",
+      "target": "sch-mit-school-of-architecture-and-planning",
+      "kind": "trained"
+    },
+    {
+      "source": "p-lori-a-brown",
+      "target": "sch-georgia-institute-of-technology",
+      "kind": "trained"
+    },
+    {
+      "source": "p-david-fortin",
+      "target": "sch-university-of-calgary",
+      "kind": "trained"
+    },
+    {
+      "source": "p-david-fortin",
+      "target": "sch-university-of-edinburgh",
+      "kind": "trained"
+    },
+    {
+      "source": "p-katherine-darnstadt",
+      "target": "sch-university-of-illinois-chicago",
+      "kind": "trained"
+    },
+    {
+      "source": "p-olalekan-jeyifous",
+      "target": "sch-cornell-aap",
+      "kind": "trained"
+    },
+    {
+      "source": "p-bryan-c-lee",
+      "target": "sch-hampton-university",
+      "kind": "trained"
+    },
+    {
+      "source": "p-pascale-sablan",
+      "target": "sch-pratt-institute",
+      "kind": "trained"
+    },
+    {
+      "source": "p-pascale-sablan",
+      "target": "sch-columbia-gsapp",
+      "kind": "trained"
+    },
+    {
+      "source": "p-michel-rojkind",
+      "target": "sch-universidad-iberoamericana",
+      "kind": "trained"
+    }
+  ]
+}

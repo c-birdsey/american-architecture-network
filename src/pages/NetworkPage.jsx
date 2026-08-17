@@ -5,7 +5,7 @@ import { select, pointer } from "d3-selection";
 import { buildNetworkGraph } from "../data/network.js";
 import { useGraph } from "../hooks/useGraph.js";
 import { NODE_KIND, EDGE_KIND, VIEW_PRESETS, RELATIONSHIP_ORDER, HOUSE } from "../data/taxonomy.js";
-import { AdminPanel } from "./AdminPage.jsx";
+import { AdminPanel, EditNodeOverlay } from "./AdminPage.jsx";
 
 const FOCUS_DIM_ALPHA = 0.15;
 const LABEL_FONT_SIZE = 11;
@@ -264,11 +264,16 @@ export default function NetworkPage() {
         ctx.globalAlpha = dimmed ? FOCUS_DIM_ALPHA : l.kind === "honor" ? 0.28 : l.kind === "principal" ? 0.4 : 0.55;
         ctx.strokeStyle = colorizeRef.current ? (spec?.color || "#000") : "#000";
         ctx.lineWidth = (spec?.weight || 1) / Math.max(0.6, tf.k);
+        // Trained At (person -> school, attended-as-a-student) reads as
+        // dashed to distinguish it from the solid faculty/seat lines that
+        // cover the other two school relationships (taught/led there).
+        ctx.setLineDash(l.kind === "trained" ? [5 / tf.k, 4 / tf.k] : []);
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(t.x, t.y);
         ctx.stroke();
       }
+      ctx.setLineDash([]);
 
       for (const node of graph.nodes) {
         if (node.x == null || !vis.nodeVisible(node)) continue;
@@ -509,11 +514,6 @@ export default function NetworkPage() {
     simRef.current?.alpha(0.6).restart();
   }
 
-  function clearFocus() {
-    setSelectedId(null);
-    setFocusDepth(1);
-  }
-
   function applyPreset(id) {
     const p = VIEW_PRESETS[id];
     setEdgeKindsOn(new Set(p.edgeKinds));
@@ -545,6 +545,7 @@ export default function NetworkPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
   const [infoOpen, setInfoOpen] = useState(false);
+  const [editingNodeId, setEditingNodeId] = useState(null);
 
   const searchResults = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -625,7 +626,6 @@ export default function NetworkPage() {
       <div className="network-layout">
         <button type="button" className="link-btn" onClick={resettle}>Resettle</button>
         <button type="button" className="link-btn" onClick={fitToScreen}>Fit to Screen</button>
-        <button type="button" className="link-btn" onClick={clearFocus}>Clear Focus</button>
         <span className="network-layout-sep">|</span>
         <button
           type="button"
@@ -659,8 +659,13 @@ export default function NetworkPage() {
           onSelect={(id) => { setSelectedId(id); setFocusDepth(1); }}
           onFocusNeighborhood={() => setFocusDepth(2)}
           onCenter={() => centerOnNode(selectedNode)}
+          onEdit={() => setEditingNodeId(selectedNode.id)}
           onClose={() => setSelectedId(null)}
         />
+      )}
+
+      {editingNodeId && (
+        <EditNodeOverlay nodeId={editingNodeId} onClose={() => setEditingNodeId(null)} />
       )}
 
       {searchOpen && (
@@ -820,7 +825,7 @@ function buildRelationshipGroups(node, links, nodeById) {
   return ordered;
 }
 
-function NodeDetailPanel({ node, links, nodeById, onSelect, onFocusNeighborhood, onCenter, onClose }) {
+function NodeDetailPanel({ node, links, nodeById, onSelect, onFocusNeighborhood, onCenter, onEdit, onClose }) {
   const groups = useMemo(() => buildRelationshipGroups(node, links, nodeById), [node, links, nodeById]);
   const houseLabels = (node.h || []).map((code) => HOUSE[code]).filter(Boolean);
 
@@ -858,6 +863,7 @@ function NodeDetailPanel({ node, links, nodeById, onSelect, onFocusNeighborhood,
       <div className="network-panel-actions">
         <button type="button" className="link-btn" onClick={onFocusNeighborhood}>Focus Neighbourhood</button>
         <button type="button" className="link-btn" onClick={onCenter}>Centre</button>
+        <button type="button" className="link-btn link-btn-edit" onClick={onEdit}>Edit</button>
       </div>
     </aside>
   );

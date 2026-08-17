@@ -20,4 +20,4 @@ export const firebaseConfig = {
 // Must stay in sync with the Firestore rules in README.md, which are what
 // actually enforce it; this constant only controls the app's own
 // messaging (a clear rejection instead of a broken screen).
-export const ADMIN_EMAILS = ["calder.birdsey@gmail.com"];
+export const ADMIN_EMAILS = ["calder.birdsey@gmail.com", "cctommychen@gmail.com"];

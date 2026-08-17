@@ -10,6 +10,7 @@
   --line:#e8e8e8;
   --bg:#fff;
   --error:#b00020;
+  --pink:#c23f74;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -77,6 +78,11 @@ a{ color:inherit; text-decoration:none; }
   color:rgba(0,0,0,0.5);
   margin:0 0 24px;
 }
+
+/* Same size/color as .info-content p -- headings inside the admin/edit
+   overlays (Admin -- email, Edit -- id) read like the rest of the app's
+   full-screen overlay text rather than the small corner wordmark. */
+.overlay-heading{ font-size:20px; color:rgba(0,0,0,0.5); }
 
 /* ---------- network stage ---------- */
 
@@ -222,6 +228,7 @@ a{ color:inherit; text-decoration:none; }
 .network-rel-list button:hover{ color:var(--error); text-decoration:line-through; }
 
 .network-panel-actions{ display:flex; gap:20px; margin-top:20px; }
+.link-btn-edit{ color:var(--pink); }
 
 .network-filter-list{ display:flex; flex-direction:column; gap:4px; align-items:flex-start; }
 .network-filter-toggle, .network-filter-preset{
@@ -298,25 +305,31 @@ a{ color:inherit; text-decoration:none; }
 /* ---------- admin (same overlay chrome as .network-info-overlay -- see
    AdminPanel in AdminPage.jsx) ---------- */
 
+/* Same size/color treatment as .info-content p -- the admin overlay's
+   status/gate text should read like the rest of the app's full-screen
+   overlays, not like a form hint. */
 .admin-status{
-  font-size:13px;
-  color:var(--gray);
+  font-size:20px;
+  color:rgba(0,0,0,0.5);
 }
 .admin-gate{
-  max-width:420px;
   display:flex;
-  flex-direction:column;
+  align-items:baseline;
   gap:16px;
-  font-size:14px;
+  font-size:20px;
+  white-space:nowrap;
 }
+.admin-gate p{ margin:0; color:rgba(0,0,0,0.5); }
+.admin-gate .link-btn{ font-size:13px; }
 .admin-topbar{
   display:flex;
   align-items:baseline;
-  justify-content:space-between;
+  gap:20px;
   margin-bottom:32px;
   padding-bottom:16px;
   border-bottom:1px solid var(--line);
 }
+.admin-topbar .link-btn{ font-size:20px; color:var(--pink); }
 .admin-message{ font-size:13px; color:rgba(0,0,0,0.6); margin-bottom:24px; }
 
 .admin-columns{
@@ -332,6 +345,8 @@ a{ color:inherit; text-decoration:none; }
   padding:8px 10px;
   background:none;
 }
+.admin-form-edit{ max-width:420px; }
+.admin-label{ display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--gray); }
 .admin-checkbox{ display:flex; align-items:center; gap:8px; font-size:13px; }
 .admin-hint{ font-size:12px; color:var(--gray); margin-top:8px; }
 
