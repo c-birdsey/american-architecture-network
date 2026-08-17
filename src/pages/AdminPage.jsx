@@ -75,7 +75,7 @@ function AdminDashboard({ graph, user }) {
   const filteredEdges = useMemo(() => {
     const q = edgeQuery.trim().toLowerCase();
     if (!q) return graph.edges.slice(0, 60);
-    return graph.edges.filter(([s, t, k]) => s.includes(q) || t.includes(q) || k.includes(q)).slice(0, 60);
+    return graph.edges.filter((e) => e.source.includes(q) || e.target.includes(q) || e.kind.includes(q)).slice(0, 60);
   }, [graph.edges, edgeQuery]);
 
   const filteredNodes = useMemo(() => {
@@ -116,7 +116,7 @@ function AdminDashboard({ graph, user }) {
     setBusy(true);
     try {
       const nodes = graph.nodes.filter((n) => n.id !== id);
-      const edges = graph.edges.filter(([s, t]) => s !== id && t !== id);
+      const edges = graph.edges.filter((e) => e.source !== id && e.target !== id);
       await writeGraph({ nodes, edges });
       setMessage(`Deleted "${id}".`);
     } finally {
@@ -136,7 +136,7 @@ function AdminDashboard({ graph, user }) {
     }
     setBusy(true);
     try {
-      await writeGraph({ edges: [...graph.edges, [source, target, kind]] });
+      await writeGraph({ edges: [...graph.edges, { source, target, kind }] });
       setMessage(`Added edge ${source} → ${target} (${kind}).`);
       form.reset();
     } finally {
@@ -147,7 +147,7 @@ function AdminDashboard({ graph, user }) {
   async function handleDeleteEdge(edge) {
     setBusy(true);
     try {
-      const idx = graph.edges.findIndex((e) => e[0] === edge[0] && e[1] === edge[1] && e[2] === edge[2]);
+      const idx = graph.edges.findIndex((e) => e.source === edge.source && e.target === edge.target && e.kind === edge.kind);
       if (idx === -1) return;
       const edges = [...graph.edges];
       edges.splice(idx, 1);
@@ -243,9 +243,9 @@ function AdminDashboard({ graph, user }) {
           />
           <ul className="admin-list">
             {filteredEdges.map((edge, i) => (
-              <li key={`${edge[0]}-${edge[1]}-${edge[2]}-${i}`} className="admin-list-row">
-                <span className="admin-list-id">{edge[0]} → {edge[1]}</span>
-                <span className="admin-list-kind">{edge[2]}</span>
+              <li key={`${edge.source}-${edge.target}-${edge.kind}-${i}`} className="admin-list-row">
+                <span className="admin-list-id">{edge.source} → {edge.target}</span>
+                <span className="admin-list-kind">{edge.kind}</span>
                 <button type="button" className="link-btn" onClick={() => handleDeleteEdge(edge)} disabled={busy}>
                   Delete
                 </button>

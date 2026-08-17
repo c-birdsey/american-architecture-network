@@ -29,7 +29,13 @@ function extractArrayLiteral(varName) {
 }
 
 const nodes = JSON.parse(extractArrayLiteral("NODES"));
-const edges = JSON.parse(extractArrayLiteral("EDGES"));
+const rawEdges = JSON.parse(extractArrayLiteral("EDGES"));
+
+// Firestore rejects arrays-of-arrays ("Nested arrays are not allowed"), so
+// the source file's [source, target, kind] triplets become objects here --
+// this is the shape graph/data actually stores and the shape network.js/
+// AdminPage.jsx expect back.
+const edges = rawEdges.map(([source, target, kind]) => ({ source, target, kind }));
 
 console.log(`Extracted ${nodes.length} nodes, ${edges.length} edges.`);
 

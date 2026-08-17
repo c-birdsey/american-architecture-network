@@ -32,7 +32,7 @@ Everything lives in a single Firestore document, `graph/data`:
   nodes: [{ id, n (name), k (person|practice|award|school), l (life dates),
              t (note), h (house/cohort codes), a (award strings),
              now (0|1), post (current position) }, ...],
-  edges: [[sourceId, targetId, kind], ...],
+  edges: [{ source (id), target (id), kind }, ...],
   updatedAt
 }
 ```

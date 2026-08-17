@@ -13,12 +13,13 @@ export function buildNetworkGraph({ nodes: rawNodes, edges: rawEdges }) {
     return node;
   });
 
-  // Firestore can't return array holes, but a hand-edited edge could still
-  // point at a since-deleted node -- drop those rather than letting d3-force
-  // throw on an unresolvable link id.
+  // Edges are stored as {source, target, kind} objects, not [source,
+  // target, kind] tuples -- Firestore rejects arrays-of-arrays. A
+  // hand-edited edge could still point at a since-deleted node, so drop
+  // those rather than letting d3-force throw on an unresolvable link id.
   const links = rawEdges
-    .filter(([source, target]) => byId.has(source) && byId.has(target))
-    .map(([source, target, kind]) => ({ source, target, kind }));
+    .filter((e) => byId.has(e.source) && byId.has(e.target))
+    .map((e) => ({ ...e }));
 
   for (const link of links) {
     byId.get(link.source).degree += 1;
