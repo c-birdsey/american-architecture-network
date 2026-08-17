@@ -32,6 +32,9 @@ export const EDGE_KIND = {
   seat: { dist: 60, strength: 0.35, weight: 1.8, labelOut: "Led", labelIn: "Led By", color: "#7350c9" },
   principal: { dist: 26, strength: 0.7, weight: 1.0, labelOut: "Principal Of", labelIn: "Principals", color: "#5c7086" },
   honor: { dist: 78, strength: 0.12, weight: 0.8, labelOut: "Recognised By", labelIn: "Recognises", color: "#a8862c" },
+  // Person -> school: attended/graduated from, as a student -- distinct
+  // from `faculty` (taught there) and `seat` (led/chaired it).
+  trained: { dist: 70, strength: 0.35, weight: 1.0, labelOut: "Trained At", labelIn: "Alumni", color: "#7350c9" },
 };
 
 // The order relationship groups are shown in the detail panel -- lineage
@@ -40,6 +43,7 @@ export const RELATIONSHIP_ORDER = [
   "Studied Under", "Worked For", "Taught", "Employed",
   "Recruited", "Recruited By", "Partners",
   "Principal Of", "Principals",
+  "Trained At", "Alumni",
   "Led", "Led By", "Teaches At", "Faculty",
   "Recognised By", "Recognises",
 ];
@@ -72,7 +76,7 @@ export const VIEW_PRESETS = {
   },
   schools: {
     label: "Schools",
-    edgeKinds: ["seat", "faculty", "studio"],
+    edgeKinds: ["seat", "faculty", "studio", "trained"],
     nodeKinds: ["person", "school"],
     hideOrphans: true,
     onlyNow: false,
