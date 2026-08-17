@@ -6,12 +6,13 @@
 // from hiding these values. This is a fresh, separate Firebase project
 // from the private archive's -- do not reuse that project's config here.
 export const firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.firebasestorage.app",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME",
+  apiKey: "AIzaSyBuAaRhaPOT-L2L-Xikcmm4osJwfMGTwTA",
+  authDomain: "archnetwork-57d48.firebaseapp.com",
+  projectId: "archnetwork-57d48",
+  storageBucket: "archnetwork-57d48.firebasestorage.app",
+  messagingSenderId: "936107385365",
+  appId: "1:936107385365:web:7474969cb0c5849ad1a41c",
+  measurementId: "G-2MG27VDL64",
 };
 
 // The only people who can sign in and reach /admin. Public visitors never
