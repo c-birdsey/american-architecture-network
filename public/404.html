@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>American Architecture — The Network</title>
+<script>
+  // GitHub Pages has no server-side routing for the SPA -- any path that
+  // isn't a literal file (e.g. /admin) 404s here instead of loading
+  // index.html. Stash the requested URL and redirect to the real app;
+  // main.jsx restores it via history.replaceState before BrowserRouter
+  // reads the location.
+  sessionStorage.redirect = location.pathname + location.search + location.hash;
+  location.replace("/");
+</script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Firebase Admin service account key -- never commit this, it's a
+# full-access credential. Used only by scripts/seed-firestore.mjs.
+scripts/serviceAccountKey.json
+
+# Regeneratable via `npm run extract-seed` from scripts/source/ -- the
+# original HTML is the committed source of truth, this is just its output.
+scripts/seed.json
