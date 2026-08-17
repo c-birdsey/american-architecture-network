@@ -41,7 +41,7 @@ function AdminGate({ children }) {
     return (
       <div className="admin-gate">
         <p>Admin access requires signing in with an approved Google account.</p>
-        <button type="button" className="link-btn" onClick={() => signInWithPopup(auth, googleProvider)}>
+        <button type="button" className="link-btn link-btn-edit" onClick={() => signInWithPopup(auth, googleProvider)}>
           Sign In with Google
         </button>
       </div>
