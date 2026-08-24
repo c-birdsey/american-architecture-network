@@ -11,6 +11,7 @@
   --bg:#fff;
   --error:#b00020;
   --pink:#c23f74;
+  --green:#1f6b3a;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -336,7 +337,7 @@ a{ color:inherit; text-decoration:none; }
 .admin-columns{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:40px;
+  gap:72px;
 }
 .admin-section-wide{ grid-column:1 / -1; }
 
@@ -351,25 +352,312 @@ a{ color:inherit; text-decoration:none; }
 .admin-checkbox{ display:flex; align-items:center; gap:8px; font-size:13px; }
 .admin-hint{ font-size:12px; color:var(--gray); margin-top:8px; }
 
+/* Search sits on the same line as the section's title, pinned to the
+   right -- same baseline-aligned title-plus-control read as .admin-row-
+   head's title/Submit pairing. */
+.admin-section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+.admin-section-head .detail-heading{ margin:0; }
+
 .admin-filter{
-  width:100%;
-  max-width:360px;
+  width:160px;
+  flex-shrink:0;
   border:none;
   border-bottom:1px solid var(--line);
   padding:6px 0;
   background:none;
-  margin-bottom:12px;
 }
+.admin-filter:focus{ outline:none; }
 
+/* Multi-select kind toggles for the Manage Data lists -- same on/off
+   read as the network's own Filters panel (.network-filter-toggle). */
+.admin-type-filters{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:12px; }
+.admin-type-toggle{
+  background:none;
+  border:none;
+  padding:0;
+  font-family:inherit;
+  font-size:12px;
+  color:var(--ink);
+  cursor:pointer;
+}
+.admin-type-toggle:hover{ color:var(--error); }
+.admin-type-toggle.off{ color:rgba(0,0,0,0.35); text-decoration:line-through; }
+
+.admin-controls{ display:flex; align-items:baseline; gap:14px; margin-bottom:12px; }
+.admin-controls span{ font-size:12px; color:var(--gray); }
+.admin-controls .link-btn{ font-size:12px; }
+
+/* Each <li> lays out its own grid track sizes independently -- without a
+   fixed width here, a long id on one row pushes that row's Name column
+   start further right than shorter-id rows, so the Name column reads as
+   ragged instead of aligned down the list. Fixing the id column's width
+   (with an ellipsis for anything longer) keeps every row's Name column
+   starting at the same x regardless of id length. */
 .admin-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
 .admin-list-row{
   display:grid;
-  grid-template-columns:1fr 1fr auto auto;
+  grid-template-columns:150px 1fr auto auto;
   gap:16px;
   align-items:center;
   padding:6px 0;
   border-bottom:1px solid var(--line);
   font-size:13px;
 }
-.admin-list-id{ color:var(--gray); font-size:12px; }
+.admin-list-id{
+  color:var(--gray);
+  font-size:12px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
 .admin-list-kind{ color:var(--gray); font-size:12px; text-transform:uppercase; letter-spacing:0.04em; }
+
+/* ---------- admin tabs + manual-addition form (matches the archive
+   app's .field/.choice-list/.entry-form-row patterns from NewEntryPage --
+   same borderless inputs, same vertical choice-list for fixed-option
+   fields like Primative Type, same Active/Inactive toggle look as
+   Built/Unbuilt). ---------- */
+
+/* admin-content fills at least the full viewport (minus the overlay's own
+   32px top/bottom padding) so admin-layout's flex:1 below always has at
+   least that much height to stretch into -- otherwise the divider line
+   would stop wherever the right-hand panel's content happened to end
+   instead of reaching the bottom of the screen. */
+.admin-content{ display:flex; flex-direction:column; min-height:calc(100vh - 64px); }
+
+/* Tabs sit as their own left-aligned column, same read as .network-panel-
+   left's bordered detail panel -- a vertical rule to their right (full
+   height, via the flex row's default stretch against admin-layout's
+   filled height) separates them from the content that changes underneath
+   depending which tab is active. */
+.admin-layout{ display:flex; align-items:stretch; flex:1; }
+.admin-tabs{
+  flex-shrink:0;
+  width:240px;
+  padding-right:32px;
+  margin-right:32px;
+  border-right:1px solid rgba(0,0,0,0.25);
+}
+.admin-tabs.choice-list button{ font-size:16px; }
+.admin-tab-content{ flex:1; min-width:0; }
+
+.field{ display:block; margin-bottom:20px; font-size:16px; color:var(--gray); }
+.field > span{ display:block; margin-bottom:6px; font-size:16px; color:var(--ink); }
+.field input[type=text]{
+  display:block;
+  width:100%;
+  font-size:16px;
+  color:rgba(0,0,0,0.5);
+  padding:0;
+  border:none;
+  background:transparent;
+}
+.field input:focus, .field select:focus{ outline:none; }
+.field select{
+  display:block;
+  width:100%;
+  font-size:16px;
+  color:rgba(0,0,0,0.5);
+  padding:0;
+  border:none;
+  background:transparent;
+  appearance:none;
+  -webkit-appearance:none;
+}
+.field input::placeholder{ color:rgba(0,0,0,0.25); opacity:1; }
+
+.field textarea{
+  display:block;
+  width:100%;
+  font-size:13px;
+  color:rgba(0,0,0,0.6);
+  padding:0;
+  border:none;
+  background:transparent;
+  resize:vertical;
+}
+.field textarea:focus{ outline:none; }
+.field textarea::placeholder{ color:rgba(0,0,0,0.25); opacity:1; }
+
+.choice-list{ display:flex; flex-direction:column; gap:2px; }
+.choice-list button{
+  background:none;
+  border:none;
+  padding:0;
+  text-align:left;
+  font-size:16px;
+  color:var(--gray);
+  cursor:pointer;
+}
+.choice-list button:hover{ color:var(--error); text-decoration:line-through; }
+.choice-list button.active{ color:var(--ink); }
+
+/* Dropdown for NodeSearchField (Add Edge's Source/Target) -- floats below
+   the input without pushing the rest of the row down. */
+.admin-search-field{ position:relative; }
+.admin-search-results{
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  z-index:10;
+  margin:2px 0 0;
+  padding:4px 0;
+  list-style:none;
+  background:var(--bg);
+  border:1px solid var(--line);
+  max-height:220px;
+  overflow-y:auto;
+}
+.admin-search-results button{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:6px 10px;
+  font-family:inherit;
+  font-size:13px;
+  color:var(--ink);
+  cursor:pointer;
+}
+.admin-search-results button:hover{ color:var(--error); }
+.admin-search-kind{ font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:0.04em; flex-shrink:0; }
+
+/* ---------- database expansion (agentic research runs) ---------- */
+
+.admin-status-inline{ font-size:13px; color:var(--gray); }
+
+/* Info icon + popover next to "New Research Run" -- same round-dot icon
+   as the archive app's field-level info button, but the explanation
+   floats in a small local popover here instead of opening the archive
+   app's shared full-screen Info overlay (this app has no equivalent
+   overlay wired up, and one paragraph doesn't need one). */
+.info-icon-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:16px;
+  height:16px;
+  border:1px solid var(--gray-light);
+  border-radius:50%;
+  background:none;
+  padding:0;
+  font-size:11px;
+  line-height:1;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color:var(--gray);
+  cursor:pointer;
+  flex-shrink:0;
+}
+.info-icon-btn:hover{ border-color:var(--error); color:var(--error); }
+
+.admin-info-wrap{ position:relative; display:inline-flex; }
+.admin-info-popover{
+  position:absolute;
+  top:24px;
+  left:0;
+  z-index:10;
+  width:320px;
+  margin:0;
+  padding:14px;
+  background:var(--bg);
+  border:1px solid var(--line);
+  font-size:12px;
+  line-height:1.6;
+  color:rgba(0,0,0,0.7);
+}
+
+/* Title/Prompt labels on the New Research Run form read smaller and
+   grey rather than the rest of the app's ink-colored field labels --
+   this form is filled out less often than Add Node/Add Edge, so the
+   labels can afford to recede more. */
+.admin-run-form .field > span{ font-size:12px; color:var(--gray); }
+.admin-run-form .field input[type=text]{ font-size:13px; }
+
+/* "New Research Run" reads at the same size/weight as "Past Research"
+   below it (.detail-heading) instead of the larger heading Add Node/Add
+   Edge use -- the two headings in this tab should look like one pair. */
+.admin-run-form .admin-row-head h3{ font-size:13px; font-weight:700; }
+
+.admin-run-table-heading{ margin-top:24px; }
+.admin-run-table{ margin-top:0; }
+.admin-run-row{
+  display:grid;
+  grid-template-columns:1fr 180px 180px;
+  gap:16px;
+  align-items:baseline;
+  width:100%;
+  padding:8px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+.admin-run-head{ color:var(--gray); font-size:12px; text-transform:uppercase; letter-spacing:0.04em; }
+.admin-run-row-clickable{
+  background:none;
+  border:none;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-family:inherit;
+  cursor:pointer;
+  color:var(--ink);
+  transition:opacity 0.15s;
+}
+.admin-run-row-clickable:hover{ color:var(--error); }
+.admin-run-row-dimmed{ opacity:0.35; }
+.admin-run-prompt{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.admin-run-date{ color:var(--gray); font-size:12px; }
+
+/* Status reads via weight/color the same way the rest of the app avoids
+   arbitrary color-coding: gray while nothing needs you, pink (the same
+   "needs action" pink as Submit/Sign Out) once a run is ready to review,
+   ink once you've settled it, error-red on failure. */
+.admin-run-status-pending, .admin-run-status-running{ color:var(--gray); }
+.admin-run-status-awaiting_review{ color:var(--pink); }
+.admin-run-status-confirmed{ color:var(--green); }
+.admin-run-status-rejected{ color:rgba(0,0,0,0.35); text-decoration:line-through; }
+.admin-run-status-failed{ color:var(--error); }
+
+.admin-run-detail{ padding:16px 0 32px; border-bottom:1px solid var(--line); }
+.admin-run-desc-label{ font-size:12px; color:var(--gray); margin:0 0 4px; }
+.admin-run-desc{ font-size:13px; line-height:1.6; color:rgba(0,0,0,0.75); max-width:760px; margin:0 0 16px; }
+.admin-run-provenance{ font-size:13px; line-height:1.6; color:rgba(0,0,0,0.65); max-width:760px; margin:0 0 20px; }
+.admin-run-actions{ display:flex; align-items:baseline; gap:20px; margin-top:20px; }
+
+.admin-run-results{ margin-top:24px; }
+.admin-run-columns{ display:flex; flex-direction:column; gap:32px; }
+
+.admin-manual{ max-width:760px; }
+.admin-expand{ max-width:1000px; }
+.admin-row{ margin-bottom:48px; }
+.admin-row.admin-run-form{ margin-bottom:32px; }
+.admin-row-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:20px; }
+.admin-row-head h3{ font-size:16px; font-weight:400; margin:0; color:var(--ink); }
+.admin-row-submit{
+  background:none;
+  border:none;
+  padding:0;
+  font-size:16px;
+  font-family:inherit;
+  color:var(--pink);
+  cursor:pointer;
+}
+.admin-row-submit:hover{ color:var(--error); text-decoration:line-through; }
+.admin-row-submit:disabled{ color:var(--gray-light); cursor:default; }
+
+.admin-form-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
+  column-gap:20px;
+  row-gap:20px;
+}
+.admin-form-row .field{ margin-bottom:0; min-width:0; }

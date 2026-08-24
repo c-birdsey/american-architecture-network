@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          "calder.birdsey@gmail.com",
+          "cctommychen@gmail.com"
+        ];
+    }
+
+    match /graph/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Research-agent runs kicked off from the Database Expansion tab
+    // (see functions/index.js and src/hooks/useExpansionRuns.js). Admins
+    // create the "pending" doc from the browser; the Cloud Function then
+    // moves it through running -> awaiting_review/failed using the Admin
+    // SDK, which bypasses these rules entirely, so no client-write path
+    // needs to allow that transition. Approve/Reject are ordinary client
+    // updates (setting status to confirmed/rejected), same trust level
+    // as any other admin write in this app.
+    match /expansionRuns/{runId} {
+      allow read, create, update: if isAdmin();
+      allow delete: if false;
+    }
+  }
+}

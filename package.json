@@ -10,13 +10,15 @@
     "preview": "vite preview",
     "extract-seed": "node scripts/extract-seed.mjs",
     "seed-firestore": "node scripts/seed-firestore.mjs",
-    "append-graph": "node scripts/append-graph.mjs"
+    "append-graph": "node scripts/append-graph.mjs",
+    "seed-mock-expansion-runs": "node scripts/seed-mock-expansion-runs.mjs",
+    "clear-mock-expansion-runs": "node scripts/clear-mock-expansion-runs.mjs"
   },
   "dependencies": {
     "d3-force": "^3.0.0",
     "d3-selection": "^3.0.0",
     "d3-zoom": "^3.0.0",
-    "firebase": "^12.17.1",
+    "firebase": "^12.18.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2"

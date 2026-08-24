@@ -1,0 +1,813 @@
+{
+  "_provenance": "Additive batch (2026-08-22): missing laureates from two closed award lists -- AIA Gold Medal (1907-2026) and Pritzker Architecture Prize (1979-2026), diffed against the live graph/data person nodes (763 persons at time of research). Includes all 36 missing Pritzker laureates and a Tier-1 subset of 10 missing Gold Medal laureates (canonical 20th-century modern-movement figures with strong ties to the existing lineage era: Mazria, Calatrava, Legorreta, Erickson, Caudill, Harrison, Nervi, Aalto, Le Corbusier, Ralph Walker); Tange, Piano, and Murcutt already covered via the Pritzker set also get a second honor edge to h-aia-gold-medal since they won both. Deferred to a future pre-1950 Beaux-Arts/honorary-era Gold Medal batch (lower connectivity to the current dataset, harder to verify quickly, mostly honorary foreign recipients): Dudok, Delano, Perret, Abercrombie, Maginnis, Ostberg, Medary, Shaw, Lutyens, Goodhue, Bacon, Laloux, Swartwout, Webb. Excluded outright: Thomas Jefferson (1993 co-honoree) -- posthumous/honorary, not a practicing figure in this lineage graph. No new practice nodes added: Herzog & de Meuron, SANAA, and Alvaro Siza's practice already existed as orphaned MCHAP-batch practice nodes with no person links, so principal edges were added to connect the new person nodes to them instead of creating duplicates; RCR Arquitectes, Grafton Architects, and Lacaton & Vassal are represented via person-to-person partner edges only, matching the dominant existing convention (e.g. skidmore/owings/merrill) rather than the newer practice-node pattern. Rafael Aranda (RCR) required disambiguated id aranda_r to avoid collision with the existing unrelated node 'aranda' (Benjamin Aranda, Aranda\\\\Lasch). Sources: Wikipedia \"AIA Gold Medal\" and \"Pritzker Architecture Prize\" list pages, cross-checked against Wikipedia/Pritzker Prize org bios for recent laureates' birth years.",
+  "nodes": [
+    {
+      "id": "mazria",
+      "n": "Edward Mazria",
+      "k": "person",
+      "l": "1940–",
+      "t": "American architect and founder of Architecture 2030, a leading advocate for architecture's role in addressing climate change.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "calatrava",
+      "n": "Santiago Calatrava",
+      "k": "person",
+      "l": "1951–",
+      "t": "Spanish-Swiss architect and structural engineer known for sculptural, engineering-driven bridges and transit stations.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "legorreta",
+      "n": "Ricardo Legorreta",
+      "k": "person",
+      "l": "1931–2011",
+      "t": "Mexican architect known for vividly colored, wall-dominant regionalist modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "erickson",
+      "n": "Arthur Erickson",
+      "k": "person",
+      "l": "1924–2009",
+      "t": "Canadian architect and leading figure of West Coast modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "caudill",
+      "n": "William Caudill",
+      "k": "person",
+      "l": "1914–1983",
+      "t": "American architect and co-founder of CRS (Caudill Rowlett Scott), pioneer of a team-based design process.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "harrison",
+      "n": "Wallace Harrison",
+      "k": "person",
+      "l": "1895–1981",
+      "t": "American architect central to the design teams for Rockefeller Center and the United Nations Headquarters.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "nervi",
+      "n": "Pier Luigi Nervi",
+      "k": "person",
+      "l": "1891–1979",
+      "t": "Italian engineer-architect renowned for reinforced-concrete structural innovation.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "aalto",
+      "n": "Alvar Aalto",
+      "k": "person",
+      "l": "1898–1976",
+      "t": "Finnish architect and designer, a leading figure of humanist modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "corbusier",
+      "n": "Le Corbusier",
+      "k": "person",
+      "l": "1887–1965",
+      "t": "Swiss-French architect and urbanist, a foundational figure of 20th-century modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "walker",
+      "n": "Ralph Walker",
+      "k": "person",
+      "l": "1889–1973",
+      "t": "American Art Deco skyscraper architect, designer of 1 Wall Street and the Barclay-Vesey Building.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "barragan",
+      "n": "Luis Barragán",
+      "k": "person",
+      "l": "1902–1988",
+      "t": "Mexican architect known for luminous color and walled gardens; first Latin American Pritzker laureate.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "stirling",
+      "n": "James Stirling",
+      "k": "person",
+      "l": "1926–1992",
+      "t": "British architect, a leading figure of postmodern and late-modern architecture.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "hollein",
+      "n": "Hans Hollein",
+      "k": "person",
+      "l": "1934–2014",
+      "t": "Austrian architect and designer associated with Viennese postmodernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "bohm",
+      "n": "Gottfried Böhm",
+      "k": "person",
+      "l": "1920–2021",
+      "t": "German architect known for expressionist concrete churches, from a family spanning generations of architects.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "tange",
+      "n": "Kenzo Tange",
+      "k": "person",
+      "l": "1913–2005",
+      "t": "Japanese architect and urban planner, leading figure of postwar Japanese modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "niemeyer",
+      "n": "Oscar Niemeyer",
+      "k": "person",
+      "l": "1907–2012",
+      "t": "Brazilian architect and co-designer of Brasília, master of reinforced-concrete curves.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "rossi",
+      "n": "Aldo Rossi",
+      "k": "person",
+      "l": "1931–1997",
+      "t": "Italian architect and theorist of Neo-Rationalism, author of \"The Architecture of the City.\"",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "siza",
+      "n": "Álvaro Siza",
+      "k": "person",
+      "l": "1933–",
+      "t": "Portuguese architect known for minimalist, site-attuned modernism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "portzamparc",
+      "n": "Christian de Portzamparc",
+      "k": "person",
+      "l": "1944–",
+      "t": "French architect, first French Pritzker laureate, known for the Cité de la Musique.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "fehn",
+      "n": "Sverre Fehn",
+      "k": "person",
+      "l": "1924–2009",
+      "t": "Norwegian architect known for the Nordic Pavilion in Venice and the Hedmark Museum.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "piano",
+      "n": "Renzo Piano",
+      "k": "person",
+      "l": "1937–",
+      "t": "Italian architect, co-designer of the Centre Pompidou with Richard Rogers.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "herzog",
+      "n": "Jacques Herzog",
+      "k": "person",
+      "l": "1950–",
+      "t": "Swiss architect, co-founder of Herzog & de Meuron.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "meuron",
+      "n": "Pierre de Meuron",
+      "k": "person",
+      "l": "1950–",
+      "t": "Swiss architect, co-founder of Herzog & de Meuron.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "murcutt",
+      "n": "Glenn Murcutt",
+      "k": "person",
+      "l": "1936–",
+      "t": "Australian architect celebrated for climate-responsive, single-practitioner residential work.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "utzon",
+      "n": "Jørn Utzon",
+      "k": "person",
+      "l": "1918–2008",
+      "t": "Danish architect, designer of the Sydney Opera House.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "nouvel",
+      "n": "Jean Nouvel",
+      "k": "person",
+      "l": "1945–",
+      "t": "French architect known for the Institut du Monde Arabe and Fondation Cartier.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "zumthor",
+      "n": "Peter Zumthor",
+      "k": "person",
+      "l": "1943–",
+      "t": "Swiss architect known for material-driven, atmospheric buildings such as Therme Vals.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "sejima",
+      "n": "Kazuyo Sejima",
+      "k": "person",
+      "l": "1956–",
+      "t": "Japanese architect, co-founder of SANAA with Ryue Nishizawa.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "nishizawa",
+      "n": "Ryue Nishizawa",
+      "k": "person",
+      "l": "1966–",
+      "t": "Japanese architect, co-founder of SANAA with Kazuyo Sejima.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "soutodemoura",
+      "n": "Eduardo Souto de Moura",
+      "k": "person",
+      "l": "1952–",
+      "t": "Portuguese architect and longtime collaborator of Álvaro Siza.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "otto",
+      "n": "Frei Otto",
+      "k": "person",
+      "l": "1925–2015",
+      "t": "German architect and engineer, pioneer of lightweight tensile-membrane structures.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "aravena",
+      "n": "Alejandro Aravena",
+      "k": "person",
+      "l": "1967–",
+      "t": "Chilean architect known for participatory, incremental social housing.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "aranda_r",
+      "n": "Rafael Aranda",
+      "k": "person",
+      "l": "1961–",
+      "t": "Spanish architect, co-founder of RCR Arquitectes.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "pigem",
+      "n": "Carme Pigem",
+      "k": "person",
+      "l": "1962–",
+      "t": "Spanish architect, co-founder of RCR Arquitectes.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "vilalta",
+      "n": "Ramon Vilalta",
+      "k": "person",
+      "l": "1960–",
+      "t": "Spanish architect, co-founder of RCR Arquitectes.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "doshi",
+      "n": "B. V. Doshi",
+      "k": "person",
+      "l": "1927–2023",
+      "t": "Indian architect and urban planner; first Indian Pritzker laureate and associate of Le Corbusier and Louis Kahn.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "isozaki",
+      "n": "Arata Isozaki",
+      "k": "person",
+      "l": "1931–2022",
+      "t": "Japanese architect whose work spanned Metabolism, postmodernism, and deconstructivism.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "farrell",
+      "n": "Yvonne Farrell",
+      "k": "person",
+      "l": "1951–",
+      "t": "Irish architect, co-founder of Grafton Architects.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "mcnamara",
+      "n": "Shelley McNamara",
+      "k": "person",
+      "l": "1952–",
+      "t": "Irish architect, co-founder of Grafton Architects.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "lacaton",
+      "n": "Anne Lacaton",
+      "k": "person",
+      "l": "1955–",
+      "t": "French architect, co-founder of Lacaton & Vassal, known for adaptive reuse over demolition.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "vassal",
+      "n": "Jean-Philippe Vassal",
+      "k": "person",
+      "l": "1954–",
+      "t": "French architect, co-founder of Lacaton & Vassal.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "kere",
+      "n": "Diébédo Francis Kéré",
+      "k": "person",
+      "l": "1965–",
+      "t": "Burkinabè-German architect known for community-built, climate-responsive schools in Burkina Faso.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "chipperfield",
+      "n": "David Chipperfield",
+      "k": "person",
+      "l": "1953–",
+      "t": "British architect known for restrained, material-precise museum and cultural buildings.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "yamamoto",
+      "n": "Riken Yamamoto",
+      "k": "person",
+      "l": "1945–",
+      "t": "Japanese architect known for community-oriented housing and public buildings.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "liu",
+      "n": "Liu Jiakun",
+      "k": "person",
+      "l": "1956–",
+      "t": "Chinese architect known for grounding contemporary practice in local materials and vernacular memory.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "radic",
+      "n": "Smiljan Radić",
+      "k": "person",
+      "l": "1965–",
+      "t": "Chilean architect known for sculptural, materially inventive small-scale buildings.",
+      "h": [],
+      "now": 0,
+      "a": [],
+      "post": ""
+    }
+  ],
+  "edges": [
+    {
+      "source": "barragan",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "stirling",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "hollein",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "bohm",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "tange",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "niemeyer",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "rossi",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "siza",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "portzamparc",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "fehn",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "piano",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "herzog",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "meuron",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "murcutt",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "utzon",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "nouvel",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "zumthor",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "sejima",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "nishizawa",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "soutodemoura",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "otto",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "aravena",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "aranda_r",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "pigem",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "vilalta",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "doshi",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "isozaki",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "farrell",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "mcnamara",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "lacaton",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "vassal",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "kere",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "chipperfield",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "yamamoto",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "liu",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "radic",
+      "target": "h-pritzker-prize",
+      "kind": "honor"
+    },
+    {
+      "source": "mazria",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "calatrava",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "legorreta",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "erickson",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "caudill",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "harrison",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "nervi",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "aalto",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "corbusier",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "walker",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "tange",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "piano",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "murcutt",
+      "target": "h-aia-gold-medal",
+      "kind": "honor"
+    },
+    {
+      "source": "sejima",
+      "target": "f-sanaa",
+      "kind": "principal"
+    },
+    {
+      "source": "nishizawa",
+      "target": "f-sanaa",
+      "kind": "principal"
+    },
+    {
+      "source": "herzog",
+      "target": "f-herzog-de-meuron",
+      "kind": "principal"
+    },
+    {
+      "source": "meuron",
+      "target": "f-herzog-de-meuron",
+      "kind": "principal"
+    },
+    {
+      "source": "siza",
+      "target": "f-alvaro-siza",
+      "kind": "principal"
+    },
+    {
+      "source": "sejima",
+      "target": "nishizawa",
+      "kind": "partner"
+    },
+    {
+      "source": "herzog",
+      "target": "meuron",
+      "kind": "partner"
+    },
+    {
+      "source": "aranda_r",
+      "target": "pigem",
+      "kind": "partner"
+    },
+    {
+      "source": "aranda_r",
+      "target": "vilalta",
+      "kind": "partner"
+    },
+    {
+      "source": "farrell",
+      "target": "mcnamara",
+      "kind": "partner"
+    },
+    {
+      "source": "lacaton",
+      "target": "vassal",
+      "kind": "partner"
+    }
+  ]
+}

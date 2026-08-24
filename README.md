@@ -17,11 +17,11 @@ It's a fully separate app, repo, and Firebase project; nothing is shared.
 Unlike the archive, **there is no login wall for visitors.** Anyone can
 browse, search, and click through the network at `/`. The only gated
 route is `/admin` (Google sign-in, restricted to `ADMIN_EMAILS` in
-`src/firebase-config.js`), used for manual node/edge additions and
-corrections. The plan is to eventually run a periodic AI-agent research
-pass from that dashboard that proposes additions from a predefined set of
-architecture sources (awards, publications) -- not built yet, v1 admin is
-manual CRUD only.
+`src/firebase-config.js`), which has three tabs: Manual Addition (add one
+node/edge at a time), Manage Data (search/filter/sort/delete existing
+nodes and edges), and Database Expansion (kick off an AI research run
+from a prompt, then review/approve/reject its proposed additions) --
+see "9. Database Expansion" below for how that last one is wired up.
 
 ## Data model
 
@@ -49,6 +49,18 @@ codes are fixed taxonomy baked into the app code (`src/data/taxonomy.js`),
 not stored in Firestore -- extend that file (and redeploy) if a new kind
 or house is needed.
 
+Database Expansion runs (see "9. Database Expansion" below) live
+separately, one doc per run, in `expansionRuns/{id}`:
+
+```
+{
+  prompt, status (pending|running|awaiting_review|confirmed|rejected|failed),
+  createdBy, createdAt, startedAt, completedAt,
+  result: { nodes, edges, provenance } | null,
+  error, reviewedBy, reviewedAt,
+}
+```
+
 ## 1. Create the Firebase project
 
 [console.firebase.google.com](https://console.firebase.google.com) →
@@ -67,32 +79,20 @@ nearby region. No Storage needed — this app has no image uploads.
 
 ## 4. Security rules
 
-**Firestore rules** (Firestore Database → Rules):
+The rules live in `firestore.rules` at the repo root (not pasted inline
+here, so there's one source of truth instead of two copies drifting
+apart) -- `graph/data` is public read / admin-only write, and
+`expansionRuns/*` (Database Expansion's run docs) is admin-only read,
+create, and update. Push it either by pasting the file's contents into
+**Firestore Database → Rules** in the console, or:
 
 ```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    function isAdmin() {
-      return request.auth != null &&
-        request.auth.token.email in [
-          "admin1@example.com",
-          "admin2@example.com"
-        ];
-    }
-
-    match /graph/{docId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-  }
-}
+firebase deploy --only firestore:rules
 ```
 
-Public read, admin-only write. Keep the email list in sync with
-`ADMIN_EMAILS` in `src/firebase-config.js` — the rules are what actually
-enforce it, the constant is just for the app's own messaging.
+Keep `isAdmin()`'s email list in sync with `ADMIN_EMAILS` in
+`src/firebase-config.js` — the rules are what actually enforce it, the
+constant is just for the app's own messaging.
 
 ## 5. Get the web app config
 
@@ -134,4 +134,53 @@ the app itself references the domain.
 ## 8. Deploy
 
 GitHub Actions (`.github/workflows/deploy.yml`) auto-builds and deploys
-to GitHub Pages on every push to `main`. No manual deploy step.
+the frontend to GitHub Pages on every push to `main`. No manual deploy
+step for the site itself -- but that workflow doesn't touch Cloud
+Functions or Firestore rules, so 9 below is a manual `firebase deploy`.
+
+## 9. Database Expansion (agentic research) — optional
+
+The admin dashboard's Database Expansion tab: type a prompt (e.g. "find
+AIA Gold Medal laureates from the 1950s missing from the graph"), submit
+it, and walk away. That write is a Cloud Function's trigger
+(`functions/index.js`) -- it runs Claude with the hosted `web_search`
+tool against the prompt, using the same node/edge shape as
+`scripts/additions/*.json`, and writes an `{ nodes, edges, provenance }`
+result back onto the run doc once done. Reviewing a finished run in the
+UI: Approve merges it into `graph/data` with the same dedupe rules as
+`scripts/append-graph.mjs` (an id that already exists is never
+overwritten, duplicate edges and edges with a missing endpoint are
+skipped); Reject just marks it rejected and leaves `graph/data`
+untouched. This whole section is opt-in -- skip it if you don't want an
+agent (and its API cost) running against your project; the other two
+admin tabs work fine without it.
+
+Two things beyond the base setup above:
+
+**Upgrade to the Blaze (pay-as-you-go) plan.** Cloud Functions don't run
+on Firebase's free Spark plan. Firebase Console → gear icon → **Usage and
+billing → Details & settings → Modify plan**.
+
+**An Anthropic API key**, from
+[console.anthropic.com](https://console.anthropic.com). Store it as a
+Cloud Functions secret -- never put it in `firebase-config.js`, that
+file is public client config and this key is the opposite of that:
+
+```
+firebase functions:secrets:set ANTHROPIC_API_KEY
+```
+
+Then deploy the function and the Firestore rules together (the rules
+file already covers `expansionRuns`, see "4. Security rules" above):
+
+```
+firebase deploy --only functions,firestore:rules
+```
+
+Each run is real Anthropic API usage -- the function caps it at 20 web
+searches per run, but keep an eye on cost at
+[console.anthropic.com](https://console.anthropic.com). A Firestore-
+triggered Cloud Function also has a hard 9-minute execution ceiling
+(Google's limit, not tunable), so scope each prompt to one focused topic
+rather than expecting a single run to cover a whole broad request --
+split it into a few narrower prompts instead.
