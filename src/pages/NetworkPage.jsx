@@ -558,7 +558,15 @@ export default function NetworkPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
   const [infoOpen, setInfoOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const [editingNodeId, setEditingNodeId] = useState(null);
+
+  function handleCopyEmail() {
+    navigator.clipboard.writeText("info@architectureaffinities.com").then(() => {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 1500);
+    });
+  }
 
   const searchResults = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -620,7 +628,7 @@ export default function NetworkPage() {
       )}
 
       <div className="network-topleft">
-        <span className="network-wordmark">American Architecture Network</span>
+        <span className="network-wordmark">AA | American Architecture Network</span>
         <button type="button" className="link-btn" onClick={() => setFiltersOpen((open) => !open)}>
           {filtersOpen ? "Filter-" : "Filter+"}
         </button>
@@ -749,8 +757,10 @@ export default function NetworkPage() {
             <p>
               This dataset is deeply subjective and incomplete. If interested
               in contributing to the database, or sharing feedback on the
-              methodology or representation, please reach out via
-              info@architectureaffinities.com.
+              methodology or representation, please reach out via{" "}
+              <button type="button" className="info-email-link" onClick={handleCopyEmail}>
+                {emailCopied ? "Copied to clipboard" : "info@architectureaffinities.com"}
+              </button>.
             </p>
           </div>
         </div>
