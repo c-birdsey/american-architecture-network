@@ -729,7 +729,7 @@ export default function NetworkPage() {
           </button>
           <div className="info-content">
             <p>
-              [amerarchnet] is a visualization of the relational network that
+              AA is a visualization of the relational network that
               underlies the contemporary American architectural landscape. It
               depicts people, practices, academic institutions, and award
               cohorts as the fundamental organizing data classes within this
@@ -737,7 +737,7 @@ export default function NetworkPage() {
               gravitational field and surfacing clusters of cultural control.
             </p>
             <p>
-              The choice to draw these fluid relationships with a
+              The choice to draw these relationships with a
               representational paradigm originating from the empirical
               sciences — sociograms, phylogenetic trees, muir webs, and other
               models of relational structure — is reductive, but also
@@ -750,7 +750,7 @@ export default function NetworkPage() {
               This dataset is deeply subjective and incomplete. If interested
               in contributing to the database, or sharing feedback on the
               methodology or representation, please reach out via
-              info@[url].com.
+              info@architectureaffinities.com.
             </p>
           </div>
         </div>
