@@ -1,0 +1,379 @@
+{
+  "nodes": [
+    {
+      "id": "s-aia-pennsylvania",
+      "n": "AIA Pennsylvania",
+      "k": "award",
+      "l": "state component",
+      "t": "State AIA firm award.",
+      "h": [
+        "STATE"
+      ],
+      "now": 0,
+      "a": [],
+      "post": ""
+    },
+    {
+      "id": "f-studio-d-arc-architects",
+      "n": "studio d'ARC architects",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2025"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-mossarchitects",
+      "n": "mossArchitects",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2024"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-moto-designshop",
+      "n": "Moto Designshop",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2023"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-tippetts-weaver-architects",
+      "n": "Tippetts/Weaver architects",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2022"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-wrt",
+      "n": "WRT",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2021"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-ballinger",
+      "n": "Ballinger",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2020"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-mga-partners",
+      "n": "MGA Partners",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2018"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-erdy-mchenry",
+      "n": "Erdy McHenry",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2016"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-kierantimberlake",
+      "n": "KieranTimberlake",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2015"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-bohlin-cywinski-jackson",
+      "n": "Bohlin Cywinski Jackson",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2014"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "f-spillman-farmer-architects",
+      "n": "Spillman Farmer Architects",
+      "k": "practice",
+      "l": "",
+      "t": "",
+      "h": [
+        "STATE"
+      ],
+      "a": [
+        "AIA Pennsylvania Firm Award 2013"
+      ],
+      "now": 1,
+      "post": ""
+    },
+    {
+      "id": "kieran",
+      "n": "Stephen Kieran",
+      "k": "person",
+      "l": "b. 1951",
+      "t": "Worked at Venturi, Rauch and Scott Brown before founding KieranTimberlake with Timberlake in 1984; taught at Penn for three decades.",
+      "h": [
+        "PEN"
+      ],
+      "a": [
+        "AIA Pennsylvania Medal of Distinction 2021"
+      ],
+      "now": 1,
+      "post": "Professor emeritus, University of Pennsylvania Weitzman School"
+    },
+    {
+      "id": "timberlake",
+      "n": "James Timberlake",
+      "k": "person",
+      "l": "b. 1952",
+      "t": "Venturi, Rauch and Scott Brown, then KieranTimberlake; research-driven practice and long teaching at Penn.",
+      "h": [
+        "PEN"
+      ],
+      "a": [
+        "AIA Pennsylvania Medal of Distinction 2021"
+      ],
+      "now": 1,
+      "post": "Professor emeritus, University of Pennsylvania Weitzman School"
+    },
+    {
+      "id": "mcharg",
+      "n": "Ian McHarg",
+      "k": "person",
+      "l": "1920–2001",
+      "t": "Founded landscape architecture at Penn in 1955 and wrote Design with Nature; his Wallace-McHarg partnership became WRT.",
+      "h": [
+        "PEN"
+      ],
+      "a": [
+        "National Medal of Art 1990"
+      ],
+      "now": 0,
+      "post": ""
+    }
+  ],
+  "edges": [
+    {
+      "source": "s-aia-pennsylvania",
+      "target": "stateawards",
+      "kind": "honor"
+    },
+    {
+      "source": "f-studio-d-arc-architects",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-mossarchitects",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-moto-designshop",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-tippetts-weaver-architects",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-wrt",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-ballinger",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-isa",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-mga-partners",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-digsau",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-erdy-mchenry",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-kierantimberlake",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-bohlin-cywinski-jackson",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "f-spillman-farmer-architects",
+      "target": "s-aia-pennsylvania",
+      "kind": "honor"
+    },
+    {
+      "source": "venturi",
+      "target": "kieran",
+      "kind": "office"
+    },
+    {
+      "source": "venturi",
+      "target": "timberlake",
+      "kind": "office"
+    },
+    {
+      "source": "kieran",
+      "target": "timberlake",
+      "kind": "partner"
+    },
+    {
+      "source": "kieran",
+      "target": "f-kierantimberlake",
+      "kind": "principal"
+    },
+    {
+      "source": "timberlake",
+      "target": "f-kierantimberlake",
+      "kind": "principal"
+    },
+    {
+      "source": "mcharg",
+      "target": "f-wrt",
+      "kind": "principal"
+    },
+    {
+      "source": "bohlin",
+      "target": "f-bohlin-cywinski-jackson",
+      "kind": "principal"
+    },
+    {
+      "source": "kieran",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "faculty"
+    },
+    {
+      "source": "timberlake",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "faculty"
+    },
+    {
+      "source": "mcharg",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "faculty"
+    },
+    {
+      "source": "sample_h",
+      "target": "sch-university-of-michigan",
+      "kind": "trained"
+    },
+    {
+      "source": "kieran",
+      "target": "sch-yale-university",
+      "kind": "trained"
+    },
+    {
+      "source": "kieran",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "timberlake",
+      "target": "sch-university-of-detroit",
+      "kind": "trained"
+    },
+    {
+      "source": "timberlake",
+      "target": "sch-university-of-pennsylvania-weitzman-school",
+      "kind": "trained"
+    },
+    {
+      "source": "mcharg",
+      "target": "sch-harvard-graduate-school-of-design",
+      "kind": "trained"
+    }
+  ]
+}
