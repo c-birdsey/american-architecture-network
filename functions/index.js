@@ -23,7 +23,7 @@ const db = getFirestore();
 const ANTHROPIC_API_KEY = defineSecret("ANTHROPIC_API_KEY");
 
 const MODEL = "claude-sonnet-5";
-const MAX_TOKENS = 8192;
+const MAX_TOKENS = 16000;
 const MAX_SEARCHES = 20;
 const MAX_CONTINUATIONS = 6; // guards against an infinite pause_turn loop
 const MAX_EXISTING_NODES_LISTED = 6000; // headroom over the ~2,600-node current dataset
@@ -71,7 +71,9 @@ ${HOUSES}
 ${existingNodesText}
 
 ## Output
-End your response with exactly one fenced json code block containing a single JSON object: {"nodes": [...], "edges": [...], "provenance": "..."}. The provenance string should explain your sources, methodology, and any notable inclusions/exclusions/uncertainties, in the style of a researcher's changelog note -- not marketing copy. Output nothing (empty arrays) rather than guess. Do not include nodes or edges anywhere outside that final json block.`;
+Keep your narrative reasoning brief -- once you've gathered enough verified information (or established there's nothing verifiable to add), move straight to the final answer rather than writing an extended essay first.
+
+You MUST end your response with exactly one fenced json code block containing a single JSON object: {"nodes": [...], "edges": [...], "provenance": "..."}, even if nodes and edges are both empty arrays. Never end a response without this block. The provenance string should explain your sources, methodology, and any notable inclusions/exclusions/uncertainties, in the style of a researcher's changelog note -- not marketing copy. Output nothing (empty arrays) rather than guess. Do not include nodes or edges anywhere outside that final json block.`;
 }
 
 function extractResultJson(text) {
@@ -143,7 +145,25 @@ export const runExpansion = onDocumentCreated(
       }
 
       const fullText = collectText(response.content);
-      const result = extractResultJson(fullText);
+
+      // Parsed separately from the API call itself so a malformed/missing
+      // json block still leaves the model's actual text on the run doc --
+      // otherwise a parse failure is undebuggable (this bit an early test
+      // run: it just failed with no way to see what the model actually
+      // said).
+      let result;
+      try {
+        result = extractResultJson(fullText);
+      } catch (parseErr) {
+        logger.error("Expansion run: couldn't parse model output", parseErr);
+        await runRef.update({
+          status: "failed",
+          error: parseErr.message,
+          rawResponse: fullText.slice(0, 20000),
+          completedAt: FieldValue.serverTimestamp(),
+        });
+        return;
+      }
 
       await runRef.update({
         status: "awaiting_review",
