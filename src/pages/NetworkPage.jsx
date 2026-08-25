@@ -340,18 +340,31 @@ export default function NetworkPage() {
     }
 
     let cancelled = false;
+    // requestAnimationFrame stops firing while the tab is hidden, so a
+    // prewarm driven purely by rAF freezes at whatever % it had reached
+    // the moment you switch away, and only resumes once you switch back
+    // -- setTimeout keeps running (heavily throttled, but not paused) in
+    // a background tab, so falling back to it while hidden means the
+    // network is ready (or closer to it) by the time you return instead
+    // of picking up from a dead stop. Bigger batches while hidden offset
+    // that throttling since there's no need to match the visible frame
+    // budget for a progress bar nobody's watching.
+    function schedule(fn) {
+      return document.hidden ? setTimeout(fn, 0) : requestAnimationFrame(fn);
+    }
     function prewarm() {
       let n = 0;
       function chunk() {
         if (cancelled) return;
         // 3 ticks/frame against 300 total = exactly 100 steps, so the
         // percentage advances by 1 every frame instead of jumping in
-        // 10-point chunks.
-        for (let i = 0; i < 3 && n < TOTAL_PREWARM_TICKS; i++, n++) sim.tick();
+        // 10-point chunks, while visible.
+        const batch = document.hidden ? 30 : 3;
+        for (let i = 0; i < batch && n < TOTAL_PREWARM_TICKS; i++, n++) sim.tick();
         setSettleProgress(Math.round((100 * n) / TOTAL_PREWARM_TICKS));
         draw();
         if (n < TOTAL_PREWARM_TICKS) {
-          requestAnimationFrame(chunk);
+          schedule(chunk);
         } else {
           setSettled(true);
           fitView();
@@ -359,7 +372,7 @@ export default function NetworkPage() {
           sim.on("tick", draw);
         }
       }
-      requestAnimationFrame(chunk);
+      schedule(chunk);
     }
 
     const zoomBehavior = d3zoom()
