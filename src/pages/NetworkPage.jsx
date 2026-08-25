@@ -716,15 +716,28 @@ export default function NetworkPage() {
           </button>
           <div className="info-content">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo consequat.
+              [amerarchnet] is a visualization of the relational network that
+              underlies the contemporary American architectural landscape. It
+              depicts people, practices, academic institutions, and award
+              cohorts as the fundamental organizing data classes within this
+              system, allowing influence to register as a weighted,
+              gravitational field and surfacing clusters of cultural control.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              The choice to draw these fluid relationships with a
+              representational paradigm originating from the empirical
+              sciences — sociograms, phylogenetic trees, muir webs, and other
+              models of relational structure — is reductive, but also
+              expressive. It visualizes a fundamental armature of the
+              discipline, however distasteful it might appear at times, and
+              shows how highly impressionable social dynamics influence the
+              shape of the profession at large.
+            </p>
+            <p>
+              This dataset is deeply subjective and incomplete. If interested
+              in contributing to the database, or sharing feedback on the
+              methodology or representation, please reach out via
+              info@[url].com.
             </p>
           </div>
         </div>
