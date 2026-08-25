@@ -731,7 +731,7 @@ export default function NetworkPage() {
       )}
 
       {infoOpen && (
-        <div className="overlay" onClick={(e) => { if (!e.target.closest("a, button")) setInfoOpen(false); }}>
+        <div className="overlay">
           <button type="button" className="overlay-close overlay-close-floating" onClick={() => setInfoOpen(false)}>
             Close
           </button>
@@ -758,9 +758,12 @@ export default function NetworkPage() {
               This dataset is deeply subjective and incomplete. If interested
               in contributing to the database, or sharing feedback on the
               methodology or representation, please reach out via{" "}
-              <button type="button" className="info-email-link" onClick={handleCopyEmail}>
-                {emailCopied ? "Copied to clipboard" : "info@architectureaffinities.com"}
-              </button>.
+              <span className="info-email-wrap">
+                <button type="button" className="info-email-link" onClick={handleCopyEmail}>
+                  info@architectureaffinities.com
+                </button>
+                {emailCopied && <span className="info-email-popup">Copied to clipboard</span>}
+              </span>.
             </p>
           </div>
         </div>

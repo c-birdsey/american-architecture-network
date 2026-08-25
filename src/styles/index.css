@@ -92,6 +92,20 @@ a{ color:inherit; text-decoration:none; }
   cursor:pointer;
 }
 .info-email-link:hover{ color:var(--error); text-decoration:line-through; }
+.info-email-wrap{ position:relative; display:inline-block; }
+.info-email-popup{
+  position:absolute;
+  left:50%;
+  bottom:100%;
+  transform:translateX(-50%);
+  margin-bottom:8px;
+  background:var(--bg);
+  border:1px solid rgba(0,0,0,0.4);
+  padding:3px 7px;
+  font-size:12px;
+  white-space:nowrap;
+  pointer-events:none;
+}
 
 /* Same size/color as .info-content p -- headings inside the admin/edit
    overlays (Admin -- email, Edit -- id) read like the rest of the app's
