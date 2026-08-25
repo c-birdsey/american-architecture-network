@@ -930,32 +930,78 @@ function ExpansionPanel({ graph, existingIds, busy, setBusy, setMessage, user })
   );
 }
 
+function normalizeName(name) {
+  return name.trim().toLowerCase();
+}
+
+// Compares a run's proposed nodes/edges against the live graph so the
+// admin can see exactly what Incorporate will do before clicking it.
+// Two independent runs (or a run and the live graph) can invent different
+// ids for the same real-world person -- e.g. "phifer" vs "phifer_t" for
+// Thomas Phifer -- which a plain id-based dedupe misses and would
+// otherwise commit as a duplicate node. Matching same kind + normalized
+// name catches that: the node is treated as already present and its
+// edges are remapped onto the existing id instead of being dropped.
+function computeIncorporationPlan(run, graph, existingIds) {
+  const liveIds = new Set(existingIds);
+  const existingEdgeKeys = new Set(graph.edges.map((e) => `${e.source}|${e.target}|${e.kind}`));
+  const existingByNameAndKind = new Map(graph.nodes.map((n) => [`${n.k}|${normalizeName(n.n)}`, n.id]));
+
+  const newNodes = [];
+  const idRemap = new Map();
+  const nodePlan = new Map(); // proposed id -> { status: "new" | "existing" | "merged", mergedIntoId? }
+
+  for (const node of run.result?.nodes || []) {
+    if (liveIds.has(node.id)) {
+      nodePlan.set(node.id, { status: "existing" });
+      continue;
+    }
+    const matchedExistingId = existingByNameAndKind.get(`${node.k}|${normalizeName(node.n)}`);
+    if (matchedExistingId && matchedExistingId !== node.id) {
+      nodePlan.set(node.id, { status: "merged", mergedIntoId: matchedExistingId, name: node.n });
+      idRemap.set(node.id, matchedExistingId);
+      continue;
+    }
+    nodePlan.set(node.id, { status: "new" });
+    newNodes.push(node);
+    liveIds.add(node.id);
+  }
+
+  const newEdges = [];
+  const edgePlan = [];
+  for (const edge of run.result?.edges || []) {
+    const source = idRemap.get(edge.source) || edge.source;
+    const target = idRemap.get(edge.target) || edge.target;
+    const remapped = source !== edge.source || target !== edge.target;
+    const key = `${source}|${target}|${edge.kind}`;
+    if (existingEdgeKeys.has(key)) {
+      edgePlan.push({ edge, status: "existing", source, target });
+      continue;
+    }
+    if (!liveIds.has(source) || !liveIds.has(target)) {
+      edgePlan.push({ edge, status: "dangling", source, target });
+      continue;
+    }
+    edgePlan.push({ edge, status: remapped ? "remapped" : "new", source, target });
+    newEdges.push({ ...edge, source, target });
+    existingEdgeKeys.add(key);
+  }
+
+  return { newNodes, newEdges, nodePlan, edgePlan };
+}
+
 function RunDetail({ run, graph, existingIds, busy, setBusy, user }) {
   const [resultsOpen, setResultsOpen] = useState(false);
+  const hasResult = Boolean(run.result);
+  const plan = useMemo(
+    () => (hasResult ? computeIncorporationPlan(run, graph, existingIds) : null),
+    [hasResult, run, graph, existingIds]
+  );
 
   async function handleIncorporate() {
     setBusy(true);
     try {
-      const liveIds = new Set(existingIds);
-      const existingEdgeKeys = new Set(graph.edges.map((e) => `${e.source}|${e.target}|${e.kind}`));
-
-      const newNodes = [];
-      for (const node of run.result?.nodes || []) {
-        if (liveIds.has(node.id)) continue; // never overwrite an existing node
-        newNodes.push(node);
-        liveIds.add(node.id);
-      }
-
-      const newEdges = [];
-      for (const edge of run.result?.edges || []) {
-        const key = `${edge.source}|${edge.target}|${edge.kind}`;
-        if (existingEdgeKeys.has(key)) continue;
-        if (!liveIds.has(edge.source) || !liveIds.has(edge.target)) continue; // dangling endpoint
-        newEdges.push(edge);
-        existingEdgeKeys.add(key);
-      }
-
-      await writeGraph({ nodes: [...graph.nodes, ...newNodes], edges: [...graph.edges, ...newEdges] });
+      await writeGraph({ nodes: [...graph.nodes, ...plan.newNodes], edges: [...graph.edges, ...plan.newEdges] });
       await updateDoc(doc(db, "expansionRuns", run.id), {
         status: "confirmed",
         reviewedBy: user.email,
@@ -995,8 +1041,6 @@ function RunDetail({ run, graph, existingIds, busy, setBusy, user }) {
     }
   }
 
-  const hasResult = Boolean(run.result);
-
   return (
     <div className="admin-run-detail">
       <p className="admin-run-desc-label">Prompt</p>
@@ -1009,6 +1053,7 @@ function RunDetail({ run, graph, existingIds, busy, setBusy, user }) {
       {run.status === "rejected" && run.rejectReason && (
         <p className="admin-hint">Rejected — {run.rejectReason}</p>
       )}
+      {run.status === "awaiting_review" && <IncorporationSummary plan={plan} />}
 
       <div className="admin-run-actions">
         {hasResult && (
@@ -1041,29 +1086,74 @@ function RunDetail({ run, graph, existingIds, busy, setBusy, user }) {
             <section className="admin-section">
               <h3 className="detail-heading">Nodes ({run.result.nodes.length})</h3>
               <ul className="admin-list">
-                {run.result.nodes.map((n) => (
-                  <li key={n.id} className="admin-list-row">
-                    <span className="admin-list-id">{n.id}</span>
-                    <span>{n.n}</span>
-                    <span className="admin-list-kind">{n.k}</span>
-                  </li>
-                ))}
+                {run.result.nodes.map((n) => {
+                  const p = plan.nodePlan.get(n.id);
+                  return (
+                    <li key={n.id} className="admin-list-row">
+                      <span className="admin-list-id">{n.id}</span>
+                      <span>{n.n}</span>
+                      <span className="admin-list-kind">{n.k}</span>
+                      <span className={`admin-list-status admin-list-status-${p.status}`}>
+                        {p.status === "merged" ? `merges into "${p.mergedIntoId}"` : p.status}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
 
             <section className="admin-section">
               <h3 className="detail-heading">Edges ({run.result.edges.length})</h3>
               <ul className="admin-list">
-                {run.result.edges.map((edge, i) => (
-                  <li key={`${edge.source}-${edge.target}-${edge.kind}-${i}`} className="admin-list-row">
-                    <span className="admin-list-id">{edge.source} → {edge.target}</span>
-                    <span className="admin-list-kind">{edge.kind}</span>
-                  </li>
-                ))}
+                {run.result.edges.map((edge, i) => {
+                  const p = plan.edgePlan[i];
+                  return (
+                    <li key={`${edge.source}-${edge.target}-${edge.kind}-${i}`} className="admin-list-row">
+                      <span className="admin-list-id">{p.source} → {p.target}</span>
+                      <span className="admin-list-kind">{edge.kind}</span>
+                      <span className={`admin-list-status admin-list-status-${p.status}`}>
+                        {p.status === "dangling" ? "skipped" : p.status}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           </div>
         </div>
+      )}
+    </div>
+  );
+}
+
+// Sits above the Incorporate/Reject buttons so the dedupe-by-name result
+// (see computeIncorporationPlan) is visible before the admin commits,
+// not just in the collapsible node/edge lists below.
+function IncorporationSummary({ plan }) {
+  const nodeEntries = [...plan.nodePlan.values()];
+  const newNodes = nodeEntries.filter((n) => n.status === "new").length;
+  const existingNodes = nodeEntries.filter((n) => n.status === "existing").length;
+  const mergedNodes = nodeEntries.filter((n) => n.status === "merged");
+
+  const newEdges = plan.edgePlan.filter((e) => e.status === "new" || e.status === "remapped").length;
+  const existingEdges = plan.edgePlan.filter((e) => e.status === "existing").length;
+  const danglingEdges = plan.edgePlan.filter((e) => e.status === "dangling").length;
+
+  return (
+    <div className="admin-run-diff-summary">
+      <p>
+        Incorporate would add {newNodes} node{newNodes === 1 ? "" : "s"}
+        {existingNodes > 0 && ` (${existingNodes} already in the graph, skipped)`} and {newEdges} edge
+        {newEdges === 1 ? "" : "s"}
+        {existingEdges > 0 && ` (${existingEdges} already in the graph, skipped)`}
+        {danglingEdges > 0 && `, ${danglingEdges} skipped (missing endpoint)`}.
+      </p>
+      {mergedNodes.length > 0 && (
+        <p className="admin-run-diff-warning">
+          {mergedNodes.length} proposed node{mergedNodes.length === 1 ? "" : "s"} matched an existing node by
+          name under a different id, and will be merged instead of duplicated:{" "}
+          {mergedNodes.map((n) => `"${n.name}" → ${n.mergedIntoId}`).join(", ")}.
+        </p>
       )}
     </div>
   );
