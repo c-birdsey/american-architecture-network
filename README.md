@@ -120,16 +120,21 @@ recurring sync, once the admin dashboard is the real source of new data.
 
 ## 7. Domain
 
-`amerarchnet.calderbirdsey.com` is a Cloudflare CNAME record (**DNS-only
-/ grey cloud**, not proxied) pointing at `c-birdsey.github.io`, same
-pattern as the archive's `archive.calderbirdsey.com`. `public/CNAME`
-holds the domain name; GitHub Pages settings needs it added as the
-repo's custom domain too.
+`architectureaffinities.com` is registered and DNS-managed through
+Cloudflare. Five records, all **DNS-only / grey cloud** (not proxied) so
+GitHub can issue the Pages TLS cert:
+
+- Four `A` records on the apex (`@`) pointing at GitHub Pages'
+  `185.199.108/109/110/111.153`
+- One `CNAME` on `www` pointing at `c-birdsey.github.io`
+
+`public/CNAME` holds the apex domain; GitHub Pages settings has it added
+as the repo's custom domain too, which auto-redirects `www` to the apex.
 
 Deliberately structured to move to a bought domain later without a code
 change: the domain only appears in `public/CNAME` and the Cloudflare DNS
-record. Swapping it is a one-line file edit plus a DNS change, nothing in
-the app itself references the domain.
+records. Swapping it is a one-line file edit plus a DNS change, nothing
+in the app itself references the domain.
 
 ## 8. Deploy
 
