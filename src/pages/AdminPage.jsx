@@ -8,6 +8,13 @@ import { useGraph } from "../hooks/useGraph.js";
 import { useExpansionRuns } from "../hooks/useExpansionRuns.js";
 import { ADMIN_EMAILS } from "../firebase-config.js";
 import { NODE_KIND, EDGE_KIND, HOUSE } from "../data/taxonomy.js";
+import CreatableSelect from "../components/CreatableSelect.jsx";
+
+// Fixed taxonomy, so unlike Awards below there's no "add a new one" case
+// -- Tags stays a searchable pick-list (allowCreate={false} everywhere
+// it's used), not an open vocabulary. See taxonomy.js's own comment on
+// HOUSE for why: new codes are only ever added there, in code.
+const TAG_OPTIONS = Object.entries(HOUSE).map(([code, label]) => ({ value: code, label }));
 
 function slugify(name) {
   return name
@@ -28,7 +35,7 @@ async function writeGraph(patch) {
   await updateDoc(doc(db, "graph", "data"), { ...patch, updatedAt: serverTimestamp() });
 }
 
-// Sign-in/allowlist check shared by AdminPanel and EditNodeOverlay -- both
+// Sign-in/allowlist check shared by AdminPanel and EditNodePopover -- both
 // need the same three gate states (still checking, signed out, signed in
 // but not on ADMIN_EMAILS) before rendering whatever admin content they're
 // wrapping. `children` is a render prop so the wrapped content only mounts
@@ -102,19 +109,31 @@ export function AdminPanel({ onClose }) {
   );
 }
 
-// Full-screen editor for a single node's attributes -- opened from the
-// network detail panel's Edit button. Same overlay chrome and admin gate
-// as AdminPanel, but scoped to one node instead of the whole dashboard, and
-// exposes every field the schema has (see README's "Data model") rather
-// than just the subset AdminDashboard's Add Node form takes.
-export function EditNodeOverlay({ nodeId, onClose }) {
+// Full-screen popover editor for a single node's attributes -- opened
+// from the network detail panel's Edit button. Same overlay chrome as
+// AdminPanel and the same title/Save/Cancel-in-one-row header and
+// borderless field styling as the archive app's own New/Edit Entry
+// overlay, but scoped to one node, and -- like Manual Addition's Add
+// Node form -- only shows the fields that kind actually uses. Unlike
+// Add Node's plain Person/everything-else split though, the live data
+// (scripts/seed.json) shows Award nodes carry a date 87% of the time
+// and 139 of 348 Practice nodes are marked active, so the per-kind
+// field set below is wider than Add Node's. No click-off-to-close here
+// (unlike Admin/Search) -- Cancel is the only way out, so a stray click
+// while filling in a field can't lose it.
+export function EditNodePopover({ nodeId, onClose }) {
   const rawGraph = useGraph();
+  const [busy, setBusy] = useState(false);
 
   return (
-    <div className="overlay" onClick={(e) => { if (!e.target.closest("a, button, input, textarea, select")) onClose(); }}>
-      <button type="button" className="overlay-close overlay-close-floating" onClick={onClose}>
-        Close
-      </button>
+    <div className="overlay">
+      <div className="overlay-bar">
+        <h1 className="overlay-title">Edit</h1>
+        <button type="submit" form="edit-node-form" className="overlay-submit" disabled={busy}>
+          {busy ? "Saving…" : "Save"}
+        </button>
+        <button type="button" className="overlay-close" onClick={onClose}>Cancel</button>
+      </div>
 
       <AdminGate onClose={onClose}>
         {() =>
@@ -123,7 +142,7 @@ export function EditNodeOverlay({ nodeId, onClose }) {
           ) : rawGraph === null ? (
             <p className="admin-status">The network's data hasn't been seeded yet — run the migration script first (see README).</p>
           ) : (
-            <EditNodeForm graph={rawGraph} nodeId={nodeId} onSaved={onClose} />
+            <EditNodeForm graph={rawGraph} nodeId={nodeId} onSaved={onClose} busy={busy} setBusy={setBusy} />
           )
         }
       </AdminGate>
@@ -131,25 +150,54 @@ export function EditNodeOverlay({ nodeId, onClose }) {
   );
 }
 
-function EditNodeForm({ graph, nodeId, onSaved }) {
+// Life dates matter for Person (birth–death) and Award (a single year,
+// not a range) but not Practice/School. Active matters for Person and
+// Practice. Current position and the Awards-list are Person/Practice-
+// only -- every Award/School node in the live data has an empty Awards
+// list. Note/Tags stay universal: every kind uses Tags, and Note
+// (labeled Description outside Person) is populated on most Award nodes
+// and a good chunk of the rest. Whichever fields a kind hides stay
+// untouched on save -- switching Kind never clobbers a field the form
+// isn't currently showing. Awards draws its suggestions from every
+// award string already used anywhere in the graph, the same "search the
+// live database, or add a new value" pattern as the archive app's
+// author/collaborator fields.
+function EditNodeForm({ graph, nodeId, onSaved, busy, setBusy }) {
   const node = graph.nodes.find((n) => n.id === nodeId);
-  const [busy, setBusy] = useState(false);
+
+  const [kind, setKind] = useState(node?.k || "person");
+  const [name, setName] = useState(node?.n || "");
+  const [life, setLife] = useState(node?.l || "");
+  const [active, setActive] = useState(!!node?.now);
+  const [post, setPost] = useState(node?.post || "");
+  const [note, setNote] = useState(node?.t || "");
+  const [tags, setTags] = useState(node?.h || []);
+  const [awards, setAwards] = useState(node?.a || []);
+
+  const awardOptions = useMemo(() => {
+    const set = new Set(graph.nodes.flatMap((n) => n.a || []));
+    return [...set].sort().map((a) => ({ value: a, label: a }));
+  }, [graph.nodes]);
 
   if (!node) return <p className="admin-status">This node no longer exists.</p>;
 
+  const showLife = kind === "person" || kind === "award";
+  const showActive = kind === "person" || kind === "practice";
+  const showPost = kind === "person";
+  const showAwards = kind === "person" || kind === "practice";
+
   async function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
     const updated = {
       ...node,
-      n: form.name.value.trim(),
-      k: form.kind.value,
-      l: form.life.value.trim(),
-      t: form.note.value.trim(),
-      post: form.post.value.trim(),
-      now: form.now.checked ? 1 : 0,
-      h: Array.from(form.houses.selectedOptions).map((o) => o.value),
-      a: form.awards.value.split(",").map((s) => s.trim()).filter(Boolean),
+      n: name.trim(),
+      k: kind,
+      t: note.trim(),
+      h: tags,
+      ...(showLife ? { l: life.trim() } : null),
+      ...(showActive ? { now: active ? 1 : 0 } : null),
+      ...(showPost ? { post: post.trim() } : null),
+      ...(showAwards ? { a: awards } : null),
     };
     setBusy(true);
     try {
@@ -162,53 +210,97 @@ function EditNodeForm({ graph, nodeId, onSaved }) {
   }
 
   return (
-    <div className="admin-content">
-      <div className="admin-topbar">
-        <span className="overlay-heading">Edit — {node.id}</span>
-      </div>
-      <form onSubmit={handleSubmit} className="admin-form admin-form-edit">
-        <label className="admin-label">
-          Name
-          <input name="name" defaultValue={node.n} required disabled={busy} />
+    <form id="edit-node-form" onSubmit={handleSubmit} className="admin-form-edit">
+      <div className="admin-form-row">
+        <label className="field">
+          <span>Name</span>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" disabled={busy} required />
         </label>
-        <label className="admin-label">
-          Kind
-          <select name="kind" defaultValue={node.k} disabled={busy}>
+
+        <div className="field">
+          <span>Type</span>
+          <div className="choice-list">
             {Object.entries(NODE_KIND).map(([k, spec]) => (
-              <option key={k} value={k}>{spec.label}</option>
+              <button
+                type="button"
+                key={k}
+                className={kind === k ? "active" : ""}
+                onClick={() => setKind(k)}
+                disabled={busy}
+              >
+                {spec.label}
+              </button>
             ))}
-          </select>
-        </label>
-        <label className="admin-label">
-          Life dates
-          <input name="life" defaultValue={node.l || ""} placeholder="e.g. 1900–1975" disabled={busy} />
-        </label>
-        <label className="admin-label">
-          Note
-          <textarea name="note" defaultValue={node.t || ""} rows={3} disabled={busy} />
-        </label>
-        <label className="admin-label">
-          Current position
-          <input name="post" defaultValue={node.post || ""} disabled={busy} />
-        </label>
-        <label className="admin-label">
-          Houses / cohorts
-          <select name="houses" multiple defaultValue={node.h || []} disabled={busy} size={6}>
-            {Object.entries(HOUSE).map(([code, label]) => (
-              <option key={code} value={code}>{label}</option>
-            ))}
-          </select>
-        </label>
-        <label className="admin-label">
-          Awards (comma-separated)
-          <input name="awards" defaultValue={(node.a || []).join(", ")} disabled={busy} />
-        </label>
-        <label className="admin-checkbox">
-          <input type="checkbox" name="now" defaultChecked={!!node.now} disabled={busy} /> Active now
-        </label>
-        <button type="submit" className="link-btn" disabled={busy}>Save</button>
-      </form>
-    </div>
+          </div>
+        </div>
+
+        {showLife && (
+          <label className="field">
+            <span>{kind === "award" ? "Date" : "Dates"}</span>
+            <input
+              type="text"
+              value={life}
+              onChange={(e) => setLife(e.target.value)}
+              placeholder={kind === "award" ? "e.g. 1962" : "e.g. 1900–1975"}
+              disabled={busy}
+            />
+          </label>
+        )}
+
+        {showActive && (
+          <div className="field">
+            <span>Active?</span>
+            <div className="choice-list">
+              <button type="button" className={active ? "active" : ""} onClick={() => setActive(true)} disabled={busy}>Active</button>
+              <button type="button" className={!active ? "active" : ""} onClick={() => setActive(false)} disabled={busy}>Inactive</button>
+            </div>
+          </div>
+        )}
+
+        {showPost && (
+          <label className="field">
+            <span>Current position</span>
+            <input type="text" value={post} onChange={(e) => setPost(e.target.value)} placeholder="Current position" disabled={busy} />
+          </label>
+        )}
+      </div>
+
+      <label className="field">
+        <span>{kind === "person" ? "Note" : "Description"}</span>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder={kind === "person" ? "Note…" : "Description…"}
+          rows={3}
+          disabled={busy}
+        />
+      </label>
+
+      <div className="field">
+        <span>Tags</span>
+        <CreatableSelect
+          options={TAG_OPTIONS}
+          selected={tags}
+          onChange={setTags}
+          multiple
+          placeholder="Search tags…"
+        />
+      </div>
+
+      {showAwards && (
+        <div className="field">
+          <span>Awards</span>
+          <CreatableSelect
+            options={awardOptions}
+            selected={awards}
+            onChange={setAwards}
+            multiple
+            allowCreate
+            placeholder="Search or add an award…"
+          />
+        </div>
+      )}
+    </form>
   );
 }
 
@@ -828,7 +920,6 @@ function ExpansionPanel({ graph, existingIds, busy, setBusy, setMessage, user })
                 existingIds={existingIds}
                 busy={busy}
                 setBusy={setBusy}
-                setMessage={setMessage}
                 user={user}
               />
             )}
@@ -839,7 +930,7 @@ function ExpansionPanel({ graph, existingIds, busy, setBusy, setMessage, user })
   );
 }
 
-function RunDetail({ run, graph, existingIds, busy, setBusy, setMessage, user }) {
+function RunDetail({ run, graph, existingIds, busy, setBusy, user }) {
   const [resultsOpen, setResultsOpen] = useState(false);
 
   async function handleIncorporate() {
@@ -870,7 +961,6 @@ function RunDetail({ run, graph, existingIds, busy, setBusy, setMessage, user })
         reviewedBy: user.email,
         reviewedAt: serverTimestamp(),
       });
-      setMessage(`Incorporated ${newNodes.length} node(s), ${newEdges.length} edge(s) from "${run.title || run.prompt}".`);
     } finally {
       setBusy(false);
     }

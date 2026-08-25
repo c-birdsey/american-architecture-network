@@ -5,7 +5,7 @@ import { select, pointer } from "d3-selection";
 import { buildNetworkGraph } from "../data/network.js";
 import { useGraph } from "../hooks/useGraph.js";
 import { NODE_KIND, EDGE_KIND, VIEW_PRESETS, RELATIONSHIP_ORDER, HOUSE } from "../data/taxonomy.js";
-import { AdminPanel, EditNodeOverlay } from "./AdminPage.jsx";
+import { AdminPanel, EditNodePopover } from "./AdminPage.jsx";
 
 const FOCUS_DIM_ALPHA = 0.15;
 const LABEL_FONT_SIZE = 11;
@@ -665,7 +665,7 @@ export default function NetworkPage() {
       )}
 
       {editingNodeId && (
-        <EditNodeOverlay nodeId={editingNodeId} onClose={() => setEditingNodeId(null)} />
+        <EditNodePopover nodeId={editingNodeId} onClose={() => setEditingNodeId(null)} />
       )}
 
       {searchOpen && (

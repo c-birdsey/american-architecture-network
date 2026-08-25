@@ -256,6 +256,19 @@ a{ color:inherit; text-decoration:none; }
   gap:24px;
   margin-bottom:32px;
 }
+.overlay-title{ font-size:20px; font-weight:400; margin:0; color:var(--ink); }
+.overlay-submit{
+  background:none;
+  border:none;
+  padding:0;
+  font-size:20px;
+  font-family:inherit;
+  font-weight:400;
+  color:var(--pink);
+  cursor:pointer;
+}
+.overlay-submit:hover{ color:var(--error); text-decoration:line-through; }
+.overlay-submit:disabled{ color:var(--gray-light); cursor:default; }
 .overlay-close{
   margin-left:auto;
   flex-shrink:0;
@@ -268,6 +281,81 @@ a{ color:inherit; text-decoration:none; }
   cursor:pointer;
 }
 .overlay-close:hover{ color:var(--error); text-decoration:line-through; }
+
+/* ---------- creatable select (ported from the archive app's component
+   of the same name -- searchable chip input with an optional "Add
+   '<query>'" row, used for Edit Node's Tags/Awards) ---------- */
+.creatable{ position:relative; }
+.creatable-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  border:1px solid var(--line);
+  padding:3px 8px;
+  color:var(--ink);
+}
+.chip button{
+  background:none;
+  border:none;
+  padding:0;
+  color:var(--gray);
+  font-size:13px;
+  cursor:pointer;
+  line-height:1;
+}
+.chip button:hover{ color:var(--ink); }
+
+.creatable-chips input{
+  flex:1;
+  min-width:100px;
+  font-size:14px;
+  padding:0;
+  border:none;
+  background:transparent;
+}
+.creatable-chips input:focus{ outline:none; }
+/* Beats .field input[type=text] (display:block; width:100%) on
+   specificity -- without this, a CreatableSelect nested in a .field
+   (Tags/Awards below) would have its search input stretch to its own
+   full-width line under every chip instead of sitting inline with
+   them. */
+.field .creatable-chips input[type=text]{
+  display:inline-block;
+  width:auto;
+}
+
+.creatable-menu{
+  position:absolute;
+  z-index:10;
+  top:100%;
+  left:0;
+  width:420px;
+  max-width:100%;
+  background:rgba(255,255,255,0.92);
+  max-height:200px;
+  overflow-y:auto;
+  margin-top:2px;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.creatable-menu::-webkit-scrollbar{ display:none; }
+.creatable-option{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:6px 10px;
+  font-size:11px;
+  font-weight:400;
+  color:var(--ink);
+  cursor:pointer;
+}
+.creatable-option:hover{ color:var(--error); text-decoration:line-through; }
+.creatable-new{ color:var(--gray); font-style:italic; }
+.creatable-new:hover{ color:var(--error); }
 
 .search-overlay-input{
   flex:1;
@@ -341,15 +429,11 @@ a{ color:inherit; text-decoration:none; }
 }
 .admin-section-wide{ grid-column:1 / -1; }
 
-.admin-form{ display:flex; flex-direction:column; gap:10px; max-width:360px; }
-.admin-form input, .admin-form select, .admin-form textarea{
-  border:1px solid var(--line);
-  padding:8px 10px;
-  background:none;
-}
-.admin-form-edit{ max-width:420px; }
-.admin-label{ display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--gray); }
-.admin-checkbox{ display:flex; align-items:center; gap:8px; font-size:13px; }
+/* Edit Node's form -- same plain/borderless .field inputs and .admin-
+   form-row grid as Manual Addition, just wide enough that Name/Type/
+   Dates/Active/Current position can sit on one row instead of wrapping
+   after two or three. */
+.admin-form-edit{ max-width:1000px; }
 .admin-hint{ font-size:12px; color:var(--gray); margin-top:8px; }
 
 /* Search sits on the same line as the section's title, pinned to the
@@ -659,5 +743,6 @@ a{ color:inherit; text-decoration:none; }
   grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
   column-gap:20px;
   row-gap:20px;
+  margin-bottom:28px;
 }
 .admin-form-row .field{ margin-bottom:0; min-width:0; }
