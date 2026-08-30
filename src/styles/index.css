@@ -79,6 +79,9 @@ a{ color:inherit; text-decoration:none; }
   color:rgba(0,0,0,0.5);
   margin:0 0 24px;
 }
+.mobile-block-content p{
+  font-size:15px;
+}
 .info-email-link{
   background:none;
   border:none;

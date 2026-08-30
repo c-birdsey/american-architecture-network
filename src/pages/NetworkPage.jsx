@@ -755,9 +755,9 @@ export default function NetworkPage() {
               shape of the profession at large.
             </p>
             <p>
-              This dataset is deeply subjective and incomplete. If interested
+              This dataset is subjective and incomplete. If interested
               in contributing to the database, or sharing feedback on the
-              methodology or representation, please reach out via{" "}
+              methodology and representation, please reach out via{" "}
               <span className="info-email-wrap">
                 <button type="button" className="info-email-link" onClick={handleCopyEmail}>
                   info@architectureaffinities.com
