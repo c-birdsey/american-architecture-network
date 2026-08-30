@@ -25,6 +25,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Repo secret: paste the full JSON of a Firebase Admin service
+          # account key (Firebase Console -> Project Settings -> Service
+          # Accounts -> Generate new private key). Used only to read the
+          # public graph/data doc for scripts/generate-seo-pages.mjs; the
+          # build still succeeds without it, just skipping SEO pages.
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
